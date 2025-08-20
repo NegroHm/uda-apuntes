@@ -1,119 +1,91 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { 
-  ComputerDesktopIcon, 
-  UserGroupIcon, 
-  PaintBrushIcon, 
-  MegaphoneIcon, 
-  BuildingOffice2Icon 
-} from '@heroicons/react/24/outline'
-
-const programs = [
-  {
-    id: 'informatica',
-    title: 'Lic. en Informática y Desarrollo de Software',
-    description: 'Carrera enfocada en desarrollo de software y tecnologías de la información',
-    icon: ComputerDesktopIcon,
-    color: 'bg-blue-500'
-  },
-  {
-    id: 'psicologia',
-    title: 'Licenciatura Psicología',
-    description: 'Estudio del comportamiento humano y procesos mentales',
-    icon: UserGroupIcon,
-    color: 'bg-purple-500'
-  },
-  {
-    id: 'diseno',
-    title: 'Licenciatura en Diseño Gráfico',
-    description: 'Creatividad visual y comunicación gráfica profesional',
-    icon: PaintBrushIcon,
-    color: 'bg-pink-500'
-  },
-  {
-    id: 'marketing',
-    title: 'Licenciatura en Marketing',
-    description: 'Estrategias comerciales y comunicación empresarial',
-    icon: MegaphoneIcon,
-    color: 'bg-orange-500'
-  },
-  {
-    id: 'turismo',
-    title: 'Lic. en Turismo y Hotelería',
-    description: 'Gestión turística y servicios de hospitalidad',
-    icon: BuildingOffice2Icon,
-    color: 'bg-green-500'
-  }
-]
+import SecureDriveExplorer from '../components/SecureDriveExplorer'
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Bienvenido a APUNTES UDA
+    <div className="min-h-screen bg-white">
+      <div className="container mx-auto px-4 py-8 md:py-16">
+        {/* Hero Section */}
+        <div className="text-center mb-16 md:mb-20 animate-fade-in">
+          {/* Logo prominente sin decoraciones */}
+          <div className="mb-8">
+            <img 
+              src="/Logo.png" 
+              alt="APUNTES UDA" 
+              className="w-20 h-20 md:w-32 md:h-32 object-contain mx-auto transition-transform duration-300 hover:scale-105"
+            />
+          </div>
+          
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight text-gray-900">
+            APUNTES UDA
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Tu plataforma de apuntes universitarios. Por y para los estudiantes.
+          <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+            Accede a todos los apuntes universitarios organizados por carrera
           </p>
+          
+          {/* Status indicators - minimalist */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+            <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-green-700 font-medium text-sm">En línea</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg">
+              <span className="text-blue-700 font-medium text-sm">🔒 Seguro</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
+              <span className="text-gray-700 font-medium text-sm">📚 Gratuito</span>
+            </div>
+          </div>
+
+          {/* Call to action buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <a
+              href="https://cafecito.app/apuntesuda"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
+            >
+              ☕ Apoya el proyecto
+            </a>
+            <a
+              href="mailto:apuntesUDA@gmail.com?subject=Quiero agregar mis apuntes&body=Hola! Me gustaría contribuir con mis apuntes a la plataforma."
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
+            >
+              📚 Contribuye con apuntes
+            </a>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {programs.map((program) => {
-            const IconComponent = program.icon
-            return (
-              <Link
-                key={program.id}
-                to={`/program/${program.id}`}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
-              >
-                <div className="p-6">
-                  <div className={`inline-flex p-3 rounded-lg ${program.color} mb-4`}>
-                    <IconComponent className="h-8 w-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
-                    {program.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {program.description}
-                  </p>
-                  
-                  <div className="mt-4 flex items-center text-primary group-hover:text-secondary transition-colors">
-                    <span className="text-sm font-medium">Ver apuntes</span>
-                    <svg className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            )
-          })}
+        {/* Secure Drive Explorer */}
+        <div className="max-w-7xl mx-auto">
+          <SecureDriveExplorer rootFolderId="1oOYF9Od5NeSErp7lokq95pQ37voukBvu" />
         </div>
 
-        <div className="text-center mt-12">
-          <div className="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              ¿Necesitas ayuda?
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Explora nuestra plataforma para encontrar los apuntes que necesitas o ponte en contacto con nosotros.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/information"
-                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-secondary transition-colors font-medium"
-              >
-                Más información
-              </Link>
-              <Link
-                to="/contact"
-                className="px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors font-medium"
-              >
-                Contactar
-              </Link>
+        {/* Features Section - Minimalist */}
+        <div className="mt-20 animate-fade-in">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-200">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">📁</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Organizado</h3>
+              <p className="text-gray-600 leading-relaxed">Archivos organizados por carrera, semestre y materia para fácil acceso</p>
+            </div>
+            
+            <div className="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-200">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">🚀</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Rápido</h3>
+              <p className="text-gray-600 leading-relaxed">Acceso instantáneo a todos los apuntes sin complicaciones ni registros</p>
+            </div>
+            
+            <div className="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-200">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">🤝</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Colaborativo</h3>
+              <p className="text-gray-600 leading-relaxed">Por y para estudiantes. Una comunidad que comparte conocimiento</p>
             </div>
           </div>
         </div>

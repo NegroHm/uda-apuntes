@@ -18,11 +18,11 @@ export default defineConfig({
     minify: 'esbuild'
   },
   server: {
-    port: 3000,
+    port: 3003,
     host: true
   },
   preview: {
-    port: 3000,
+    port: 3003,
     host: true
   }
 })

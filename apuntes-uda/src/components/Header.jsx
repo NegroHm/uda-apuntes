@@ -24,21 +24,40 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white sticky top-0 z-50 border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
-                <path d="M12 7L4 11v6c0 3.31 2.69 6 6 6s6-2.69 6-6v-6l-8-4z" fill="white"/>
-              </svg>
+          <Link to="/" className="flex items-center space-x-4 group">
+            <div className="w-14 h-14 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+              <img 
+                src="/Logo.png" 
+                alt="APUNTES UDA" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">APUNTES UDA</h1>
-              <p className="text-sm text-gray-600">Por y para los estudiantes</p>
+              <h1 className="text-2xl font-black text-gray-900">APUNTES UDA</h1>
+              <p className="text-sm text-gray-600 font-medium">Por y para los estudiantes</p>
             </div>
           </Link>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3">
+            <a
+              href="https://cafecito.app/apuntesuda" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5"
+            >
+              ☕ Donar
+            </a>
+            <Link
+              to="/contact"
+              className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5"
+            >
+              📚 Agrega tus apuntes
+            </Link>
+          </div>
 
           <div className="hidden md:flex items-center space-x-6">
             <form onSubmit={handleSearch} className="relative">
@@ -47,19 +66,28 @@ const Header = () => {
                 placeholder="Buscar apuntes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-80 px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-64 px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
               />
-              <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             </form>
 
-            <nav className="flex space-x-4">
-              <Link to="/" className="text-gray-700 hover:text-primary transition-colors">
+            <nav className="flex space-x-1">
+              <Link 
+                to="/" 
+                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-3 py-2 rounded-lg hover:bg-gray-50"
+              >
                 Inicio
               </Link>
-              <Link to="/information" className="text-gray-700 hover:text-primary transition-colors">
+              <Link 
+                to="/information" 
+                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-3 py-2 rounded-lg hover:bg-gray-50"
+              >
                 Información
               </Link>
-              <Link to="/contact" className="text-gray-700 hover:text-primary transition-colors">
+              <Link 
+                to="/contact" 
+                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-3 py-2 rounded-lg hover:bg-gray-50"
+              >
                 Contacto
               </Link>
             </nav>
@@ -67,7 +95,7 @@ const Header = () => {
 
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-3 rounded-xl hover:bg-blue-50 transition-all duration-200 shadow-sm"
           >
             {isMenuOpen ? (
               <XMarkIcon className="h-6 w-6 text-gray-700" />
@@ -78,40 +106,59 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-gray-200">
-            <div className="pt-4">
-              <form onSubmit={handleSearch} className="relative mb-4">
+          <div className="md:hidden pb-6 border-t border-gray-200 animate-slide-in">
+            <div className="pt-6">
+              <form onSubmit={handleSearch} className="relative mb-6">
                 <input
                   type="text"
                   placeholder="Buscar apuntes..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
                 />
-                <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               </form>
+
+              {/* Mobile Action Buttons */}
+              <div className="flex gap-3 mb-6">
+                <a
+                  href="https://cafecito.app/apuntesuda" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-3 rounded-lg font-medium transition-all duration-200"
+                >
+                  ☕ Donar
+                </a>
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-medium transition-all duration-200"
+                >
+                  📚 Agrega apuntes
+                </Link>
+              </div>
 
               <nav className="flex flex-col space-y-2">
                 <Link
                   to="/"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                  className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
                 >
-                  Inicio
+                  🏠 Inicio
                 </Link>
                 <Link
                   to="/information"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                  className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
                 >
-                  Información
+                  ℹ️ Información
                 </Link>
                 <Link
                   to="/contact"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                  className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
                 >
-                  Contacto
+                  📞 Contacto
                 </Link>
               </nav>
             </div>

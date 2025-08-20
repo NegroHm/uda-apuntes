@@ -8,16 +8,17 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
-                  <path d="M12 7L4 11v6c0 3.31 2.69 6 6 6s6-2.69 6-6v-6l-8-4z" fill="white"/>
-                </svg>
+            <div className="flex items-center space-x-4 mb-6">
+              <div className="w-12 h-12 flex items-center justify-center">
+                <img 
+                  src="/Logo.png" 
+                  alt="APUNTES UDA" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
-                <h3 className="text-xl font-bold">APUNTES UDA</h3>
-                <p className="text-gray-400 text-sm">Por y para los estudiantes</p>
+                <h3 className="text-2xl font-black text-white">APUNTES UDA</h3>
+                <p className="text-gray-300 text-sm font-medium">Por y para los estudiantes</p>
               </div>
             </div>
             
@@ -26,27 +27,30 @@ const Footer = () => {
               la experiencia de estudio y facilitar el acceso a material académico de calidad.
             </p>
             
-            <div className="flex items-center space-x-2 text-primary">
-              <HeartIcon className="h-4 w-4" />
-              <span className="text-sm">Hecho con amor para la comunidad estudiantil</span>
+            <div className="flex items-center space-x-3 bg-gray-800 px-4 py-3 rounded-lg border border-gray-700">
+              <HeartIcon className="h-5 w-5 text-red-400" />
+              <span className="text-gray-200 font-medium">Hecho con amor para la comunidad estudiantil</span>
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-4">Navegación</h4>
-            <ul className="space-y-2">
+            <h4 className="font-bold text-xl mb-6 text-white">Navegación</h4>
+            <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-blue-300 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
+                  <span>🏠</span>
                   Inicio
                 </Link>
               </li>
               <li>
-                <Link to="/information" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/information" className="text-gray-300 hover:text-blue-300 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
+                  <span>ℹ️</span>
                   Información
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/contact" className="text-gray-300 hover:text-blue-300 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
+                  <span>📞</span>
                   Contacto
                 </Link>
               </li>
