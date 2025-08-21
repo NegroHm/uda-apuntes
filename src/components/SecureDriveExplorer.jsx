@@ -5,9 +5,8 @@ import {
   getPublicFileUrl, 
   isFolder, 
   formatFileSize, 
-  formatDate,
-  checkBackendHealth 
-} from '../services/secureDrive';
+  formatDate
+} from '../services/publicDrive';
 import { ArrowTopRightOnSquareIcon, ExclamationTriangleIcon, MagnifyingGlassIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import FileIcon from './FileIcon';
 import { SkeletonGrid } from './SkeletonLoader';
@@ -19,33 +18,12 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentFolder, setCurrentFolder] = useState(rootFolderId);
   const [breadcrumbs, setBreadcrumbs] = useState([]);
-  const [backendHealthy, setBackendHealthy] = useState(true);
-
   useEffect(() => {
-    checkHealth();
-  }, []);
-
-  useEffect(() => {
-    if (backendHealthy) {
-      loadFiles();
-    }
-  }, [currentFolder, backendHealthy]);
-
-  const checkHealth = async () => {
-    try {
-      const healthy = await checkBackendHealth();
-      setBackendHealthy(healthy);
-      if (!healthy) {
-        setError('El servidor backend no está disponible. Por favor, inicia el servidor backend.');
-      }
-    } catch (error) {
-      setBackendHealthy(false);
-      setError('No se puede conectar con el servidor backend.');
-    }
-  };
+    loadFiles();
+  }, [currentFolder]);
 
   const loadFiles = async () => {
-    if (!currentFolder || !backendHealthy) return;
+    if (!currentFolder) return;
     
     setLoading(true);
     setError(null);

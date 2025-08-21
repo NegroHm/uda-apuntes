@@ -32,6 +32,12 @@
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Critical CSS inline to prevent FOUC -->
+    <style>
+      html { visibility: hidden; opacity: 0; }
+      html.loaded { visibility: visible; opacity: 1; transition: opacity 0.3s; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
