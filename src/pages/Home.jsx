@@ -48,7 +48,9 @@ const Home = () => {
               ☕ Apoya el proyecto
             </a>
             <a
-              href="mailto:apuntesUDA@gmail.com?subject=Quiero agregar mis apuntes&body=Hola! Me gustaría contribuir con mis apuntes a la plataforma."
+              href="https://drive.google.com/drive/folders/1oOYF9Od5NeSErp7lokq95pQ37voukBvu?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
             >
               📚 Contribuye con apuntes

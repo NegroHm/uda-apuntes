@@ -36,7 +36,7 @@ const Header = () => {
               />
             </div>
             <div>
-              <h1 className="text-2xl font-black text-gray-900">APUNTES UDA</h1>
+              <h1 className="text-2xl font-black text-gray-900 mb-0 pb-0 pt-2">APUNTES UDA</h1>
               <p className="text-sm text-gray-600 font-medium">Por y para los estudiantes</p>
             </div>
           </Link>
@@ -51,12 +51,14 @@ const Header = () => {
             >
               ☕ Donar
             </a>
-            <Link
-              to="/contact"
+            <a
+              href="https://drive.google.com/drive/folders/1oOYF9Od5NeSErp7lokq95pQ37voukBvu?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5"
             >
               📚 Agrega tus apuntes
-            </Link>
+            </a>
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
@@ -129,13 +131,15 @@ const Header = () => {
                 >
                   ☕ Donar
                 </a>
-                <Link
-                  to="/contact"
+                <a
+                  href="https://drive.google.com/drive/folders/1oOYF9Od5NeSErp7lokq95pQ37voukBvu?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
                   className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-medium transition-all duration-200"
                 >
                   📚 Agrega apuntes
-                </Link>
+                </a>
               </div>
 
               <nav className="flex flex-col space-y-2">
