@@ -151,21 +151,21 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
 
         {/* Breadcrumbs */}
         {breadcrumbs.length > 0 && (
-          <div className="flex items-center gap-3 mb-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border-2 border-blue-100 animate-slide-in">
-            <div className="flex items-center gap-2">
+          <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border-2 border-blue-100 animate-slide-in">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={() => handleBreadcrumbClick(-1)}
-                className="flex items-center gap-2 px-4 py-2 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md"
+                className="flex items-center gap-2 px-3 py-2 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md text-sm sm:text-base"
               >
                 <span className="text-lg">🏠</span>
-                Inicio
+                <span className="hidden sm:inline">Inicio</span>
               </button>
               {breadcrumbs.map((crumb, index) => (
                 <div key={crumb.id} className="flex items-center gap-2">
                   <span className="text-gray-400 text-xl">›</span>
                   <button
                     onClick={() => handleBreadcrumbClick(index)}
-                    className="px-4 py-2 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md max-w-[200px] truncate"
+                    className="px-3 py-2 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md max-w-[120px] sm:max-w-[200px] truncate text-sm sm:text-base"
                     title={crumb.name}
                   >
                     {crumb.name}
