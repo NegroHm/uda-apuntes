@@ -127,19 +127,19 @@ const PublicDriveExplorer = ({ rootFolderId }) => {
 
         {/* Breadcrumbs */}
         {breadcrumbs.length > 0 && (
-          <div className="flex items-center gap-2 mb-6 text-sm">
+          <div className="flex items-center gap-2 mb-6 text-sm overflow-x-auto scrollbar-hide">
             <button
               onClick={() => handleBreadcrumbClick(-1)}
-              className="text-blue-600 hover:underline font-medium"
+              className="text-blue-600 hover:underline font-medium whitespace-nowrap flex-shrink-0"
             >
               📚 Inicio
             </button>
             {breadcrumbs.map((crumb, index) => (
-              <span key={crumb.id} className="flex items-center gap-2">
+              <span key={crumb.id} className="flex items-center gap-2 flex-shrink-0">
                 <span className="text-gray-400">›</span>
                 <button
                   onClick={() => handleBreadcrumbClick(index)}
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-600 hover:underline whitespace-nowrap"
                 >
                   {crumb.name}
                 </button>
