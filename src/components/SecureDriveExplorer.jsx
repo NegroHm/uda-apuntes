@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { 
-  listFiles, 
-  searchFiles, 
+  listPublicFiles as listFiles, 
+  searchPublicFiles as searchFiles, 
   getPublicFileUrl, 
-  isFolder, 
-  formatFileSize, 
+  isFolder,
+  formatFileSize,
   formatDate
 } from '../services/publicDrive';
-import { ArrowTopRightOnSquareIcon, ExclamationTriangleIcon, MagnifyingGlassIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { ArrowTopRightOnSquareIcon, MagnifyingGlassIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import FileIcon from './FileIcon';
 import { SkeletonGrid } from './SkeletonLoader';
 
@@ -37,17 +37,13 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
       console.error('Error loading files:', error);
       setError(error.message);
       
-      // If it's a network error, check backend health
-      if (error.message.includes('fetch')) {
-        checkHealth();
-      }
     } finally {
       setLoading(false);
     }
   };
 
   const handleSearch = async () => {
-    if (!searchTerm.trim() || !backendHealthy) {
+    if (!searchTerm.trim()) {
       loadFiles();
       return;
     }
@@ -96,57 +92,9 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
   };
 
   const handleRetry = () => {
-    if (!backendHealthy) {
-      checkHealth();
-    } else {
-      loadFiles();
-    }
+    loadFiles();
   };
 
-  // Backend health warning
-  if (!backendHealthy) {
-    return (
-      <div className="w-full animate-fade-in">
-        <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-200 rounded-2xl p-8 card-hover">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="p-3 bg-yellow-100 rounded-full">
-              <ExclamationTriangleIcon className="w-8 h-8 text-yellow-600" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-yellow-800 gradient-text">Servidor Backend Requerido</h3>
-              <p className="text-yellow-700 mt-1">Para acceder a los archivos de forma segura, necesitas iniciar el servidor backend.</p>
-            </div>
-          </div>
-          
-          <div className="glass-effect rounded-xl p-6 mb-6">
-            <h4 className="font-bold text-gray-900 mb-4 text-lg">📋 Instrucciones:</h4>
-            <ol className="list-decimal list-inside space-y-3 text-gray-700">
-              <li className="flex items-center gap-2">
-                <span>Abre una nueva terminal</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span>Ve al directorio: <code className="bg-gray-800 text-white px-2 py-1 rounded font-mono text-sm">cd server</code></span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span>Instala dependencias: <code className="bg-gray-800 text-white px-2 py-1 rounded font-mono text-sm">npm install</code></span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span>Inicia el servidor: <code className="bg-gray-800 text-white px-2 py-1 rounded font-mono text-sm">npm run dev</code></span>
-              </li>
-            </ol>
-          </div>
-          
-          <button
-            onClick={checkHealth}
-            className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-xl hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center gap-2"
-          >
-            <ArrowPathIcon className="w-5 h-5" />
-            Verificar conexión
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="w-full animate-fade-in">

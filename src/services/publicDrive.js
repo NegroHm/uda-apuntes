@@ -82,3 +82,38 @@ export const getDirectDownloadUrl = (fileId) => {
 export const isFolder = (file) => {
   return file.mimeType === 'application/vnd.google-apps.folder';
 };
+
+/**
+ * Format file size for display
+ */
+export const formatFileSize = (bytes) => {
+  if (!bytes || bytes === '0') return '-';
+  
+  const numBytes = parseInt(bytes);
+  if (isNaN(numBytes)) return '-';
+  
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(numBytes) / Math.log(1024));
+  
+  if (i === 0) return `${numBytes} ${sizes[i]}`;
+  return `${(numBytes / Math.pow(1024, i)).toFixed(1)} ${sizes[i]}`;
+};
+
+/**
+ * Format date for display
+ */
+export const formatDate = (dateString) => {
+  if (!dateString) return '-';
+  
+  try {
+    return new Date(dateString).toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  } catch (error) {
+    return dateString;
+  }
+};
