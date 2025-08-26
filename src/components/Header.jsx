@@ -62,17 +62,6 @@ const Header = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <form onSubmit={handleSearch} className="relative">
-              <input
-                type="text"
-                placeholder="Buscar apuntes..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-64 px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-              />
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            </form>
-
             <nav className="flex space-x-1">
               <Link 
                 to="/" 
