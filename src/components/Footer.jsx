@@ -4,7 +4,7 @@ import { HeartIcon } from '@heroicons/react/24/solid'
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
@@ -18,18 +18,18 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="text-2xl font-black text-white">APUNTES UDA</h3>
-                <p className="text-gray-300 text-sm font-medium">Por y para los estudiantes</p>
+                <p className="text-gray-300 dark:text-gray-400 text-sm font-medium">Por y para los estudiantes</p>
               </div>
             </div>
             
-            <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
+            <p className="text-gray-300 dark:text-gray-400 mb-6 leading-relaxed max-w-md">
               Plataforma colaborativa de apuntes universitarios diseñada para mejorar 
               la experiencia de estudio y facilitar el acceso a material académico de calidad.
             </p>
             
-            <div className="flex items-center space-x-3 bg-gray-800 px-4 py-3 rounded-lg border border-gray-700">
+            <div className="flex items-center space-x-3 bg-gray-800 dark:bg-gray-900 px-4 py-3 rounded-lg border border-gray-700 dark:border-gray-600">
               <HeartIcon className="h-5 w-5 text-red-400" />
-              <span className="text-gray-200 font-medium">Hecho con amor para la comunidad estudiantil</span>
+              <span className="text-gray-200 dark:text-gray-300 font-medium">Hecho con amor para la comunidad estudiantil</span>
             </div>
           </div>
 
@@ -37,19 +37,19 @@ const Footer = () => {
             <h4 className="font-bold text-xl mb-6 text-white">Navegación</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-blue-300 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
+                <Link to="/" className="text-gray-300 dark:text-gray-400 hover:text-blue-300 dark:hover:text-blue-400 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
                   <span>🏠</span>
                   Inicio
                 </Link>
               </li>
               <li>
-                <Link to="/information" className="text-gray-300 hover:text-blue-300 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
+                <Link to="/information" className="text-gray-300 dark:text-gray-400 hover:text-blue-300 dark:hover:text-blue-400 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
                   <span>ℹ️</span>
                   Información
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-blue-300 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
+                <Link to="/contact" className="text-gray-300 dark:text-gray-400 hover:text-blue-300 dark:hover:text-blue-400 transition-all duration-200 flex items-center gap-2 hover:translate-x-1">
                   <span>📞</span>
                   Contacto
                 </Link>
@@ -61,27 +61,27 @@ const Footer = () => {
             <h4 className="font-semibold text-lg mb-4">Carreras</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/program/informatica" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/program/informatica" className="text-gray-300 dark:text-gray-400 hover:text-primary transition-colors">
                   Informática
                 </Link>
               </li>
               <li>
-                <Link to="/program/psicologia" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/program/psicologia" className="text-gray-300 dark:text-gray-400 hover:text-primary transition-colors">
                   Psicología
                 </Link>
               </li>
               <li>
-                <Link to="/program/diseno" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/program/diseno" className="text-gray-300 dark:text-gray-400 hover:text-primary transition-colors">
                   Diseño Gráfico
                 </Link>
               </li>
               <li>
-                <Link to="/program/marketing" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/program/marketing" className="text-gray-300 dark:text-gray-400 hover:text-primary transition-colors">
                   Marketing
                 </Link>
               </li>
               <li>
-                <Link to="/program/turismo" className="text-gray-300 hover:text-primary transition-colors">
+                <Link to="/program/turismo" className="text-gray-300 dark:text-gray-400 hover:text-primary transition-colors">
                   Turismo y Hotelería
                 </Link>
               </li>
@@ -89,16 +89,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 mt-8">
+        <div className="border-t border-gray-800 dark:border-gray-700 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm text-center md:text-left">
+            <div className="text-gray-400 dark:text-gray-500 text-sm text-center md:text-left">
               <p>© {new Date().getFullYear()} APUNTES UDA. Todos los derechos reservados @apuntesuda.com</p>
             </div>
             
             <div className="flex items-center space-x-6">
               <a 
                 href="mailto:apuntesUDA@gmail.com"
-                className="text-gray-300 hover:text-primary transition-colors text-sm"
+                className="text-gray-300 dark:text-gray-400 hover:text-primary transition-colors text-sm"
               >
                 apuntesUDA@gmail.com
               </a>
@@ -111,7 +111,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="text-center text-gray-500 text-xs mt-6">
+        <div className="text-center text-gray-500 dark:text-gray-600 text-xs mt-6">
           <p>
             Esta plataforma es un proyecto educativo sin fines de lucro. 
             Todo el contenido es proporcionado por la comunidad estudiantil.

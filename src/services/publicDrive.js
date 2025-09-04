@@ -117,3 +117,16 @@ export const formatDate = (dateString) => {
     return dateString;
   }
 };
+
+/**
+ * Get file count for a folder
+ */
+export const getFolderFileCount = async (folderId) => {
+  try {
+    const files = await listPublicFiles(folderId);
+    return files.length;
+  } catch (error) {
+    console.error('Error getting folder file count:', error);
+    return 0;
+  }
+};
