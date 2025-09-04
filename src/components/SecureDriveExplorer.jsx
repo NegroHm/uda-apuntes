@@ -216,7 +216,15 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                   <span className="text-gray-400 text-xl">›</span>
                   <button
                     onClick={() => handleBreadcrumbClick(index)}
-                    className="px-3 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md max-w-[120px] sm:max-w-[200px] truncate text-sm sm:text-base"
+                    className="px-3 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md max-w-[140px] sm:max-w-[250px] text-sm sm:text-base leading-tight"
+                    style={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      wordWrap: 'break-word',
+                      overflowWrap: 'break-word'
+                    }}
                     title={crumb.name}
                   >
                     {crumb.name}
@@ -283,12 +291,12 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
               </div>
             ) : viewMode === 'grid' ? (
               // Grid View
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-6 mobile-card-spacing grid-responsive">
+              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
                 {files.map((file, index) => (
                   <div
                     key={file.id}
                     onClick={() => handleFileClick(file)}
-                    className="group bg-white dark:bg-gray-800 rounded-lg p-4 md:p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md animate-fade-in"
+                    className="group bg-white dark:bg-gray-800 rounded-lg p-3 sm:p-4 md:p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md animate-fade-in min-h-[160px] sm:min-h-[180px] flex flex-col justify-between"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <div className="flex items-center justify-between mb-3 md:mb-4">
@@ -305,7 +313,16 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                       )}
                     </div>
                     
-                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 md:mb-3 line-clamp-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300 text-base md:text-lg">
+                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 md:mb-3 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300 text-sm md:text-base leading-tight" 
+                        title={file.name}
+                        style={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word'
+                        }}>
                       {file.name}
                     </h3>
                     
@@ -313,19 +330,19 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                       {isFolder(file) && folderFileCounts[file.id] !== undefined && (
                         <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
                           <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-400 rounded-full"></span>
-                          <span className="truncate font-medium">{folderFileCounts[file.id]} archivos</span>
+                          <span className="font-medium text-xs sm:text-sm">{folderFileCounts[file.id]} archivos</span>
                         </div>
                       )}
                       {file.size && (
                         <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                           <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-purple-400 rounded-full"></span>
-                          <span className="truncate">{formatFileSize(file.size)}</span>
+                          <span className="text-xs sm:text-sm">{formatFileSize(file.size)}</span>
                         </div>
                       )}
                       {file.modifiedTime && (
                         <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                           <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-400 rounded-full"></span>
-                          <span className="truncate">{formatDate(file.modifiedTime)}</span>
+                          <span className="text-xs sm:text-sm">{formatDate(file.modifiedTime)}</span>
                         </div>
                       )}
                       <div className="mt-3 md:mt-4 pt-2 md:pt-3 border-t border-gray-200 dark:border-gray-700 group-hover:border-blue-200 dark:group-hover:border-blue-600">
@@ -356,41 +373,50 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                   <div
                     key={file.id}
                     onClick={() => handleFileClick(file)}
-                    className="group bg-white dark:bg-gray-800 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md animate-fade-in flex items-center gap-4"
+                    className="group bg-white dark:bg-gray-800 rounded-lg p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md animate-fade-in flex items-center gap-3 sm:gap-4"
                     style={{ animationDelay: `${index * 30}ms` }}
                   >
                     {/* File Icon */}
-                    <div className="flex-shrink-0 p-3 bg-gray-100 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 rounded-lg transition-all duration-200">
+                    <div className="flex-shrink-0 p-2 sm:p-3 bg-gray-100 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 rounded-lg transition-all duration-200">
                       <FileIcon 
                         mimeType={file.mimeType} 
                         fileName={file.name} 
                         isFolder={isFolder(file)} 
-                        size="w-6 h-6" 
+                        size="w-5 h-5 sm:w-6 sm:h-6" 
                       />
                     </div>
                     
                     {/* File Info */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300 text-lg truncate mb-1">
+                      <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300 text-base md:text-lg mb-1 leading-tight" 
+                          title={file.name}
+                          style={{
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word'
+                          }}>
                         {file.name}
                       </h3>
                       
-                      <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                         {isFolder(file) && folderFileCounts[file.id] !== undefined && (
                           <span className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium">
-                            <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full flex-shrink-0"></span>
                             {folderFileCounts[file.id]} archivos
                           </span>
                         )}
                         {file.size && (
                           <span className="inline-flex items-center gap-2">
-                            <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-400 rounded-full flex-shrink-0"></span>
                             {formatFileSize(file.size)}
                           </span>
                         )}
                         {file.modifiedTime && (
                           <span className="inline-flex items-center gap-2">
-                            <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full flex-shrink-0"></span>
                             {formatDate(file.modifiedTime)}
                           </span>
                         )}
@@ -398,8 +424,8 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                     </div>
                     
                     {/* Action Button */}
-                    <div className="flex-shrink-0 flex items-center gap-3">
-                      <span className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 group-hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-all duration-200">
+                    <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3">
+                      <span className="inline-flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 group-hover:bg-blue-700 text-white rounded-lg text-xs sm:text-sm font-medium transition-all duration-200">
                         {isFolder(file) ? (
                           <>
                             <span>📁</span>
@@ -415,7 +441,7 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                         )}
                       </span>
                       {!isFolder(file) && (
-                        <ArrowTopRightOnSquareIcon className="w-5 h-5 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 group-hover:text-blue-500 transition-all duration-300" />
+                        <ArrowTopRightOnSquareIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 group-hover:text-blue-500 transition-all duration-300" />
                       )}
                     </div>
                   </div>
