@@ -21,6 +21,11 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
   const [breadcrumbs, setBreadcrumbs] = useState([]);
   const [viewMode, setViewMode] = useState('grid');
   const [folderFileCounts, setFolderFileCounts] = useState({});
+
+  const truncateName = (name, maxLength = 12) => {
+    if (name.length <= maxLength) return name;
+    return name.substring(0, maxLength) + '...';
+  };
   useEffect(() => {
     loadFiles();
   }, [currentFolder]);
@@ -206,28 +211,23 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={() => handleBreadcrumbClick(-1)}
-                className="flex items-center gap-2 px-3 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md text-sm sm:text-base"
+                className="flex items-center gap-2 px-3 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md text-sm flex-shrink-0"
+                title="Volver al inicio"
               >
                 <span className="text-lg">🏠</span>
                 <span className="hidden sm:inline">Inicio</span>
               </button>
               {breadcrumbs.map((crumb, index) => (
                 <div key={crumb.id} className="flex items-center gap-2">
-                  <span className="text-gray-400 text-xl">›</span>
+                  <span className="text-gray-400 text-lg flex-shrink-0">›</span>
                   <button
                     onClick={() => handleBreadcrumbClick(index)}
-                    className="px-3 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md max-w-[140px] sm:max-w-[250px] text-sm sm:text-base leading-tight"
-                    style={{
-                      display: '-webkit-box',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden',
-                      wordWrap: 'break-word',
-                      overflowWrap: 'break-word'
-                    }}
+                    className="px-3 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md text-sm flex-shrink-0"
                     title={crumb.name}
                   >
-                    {crumb.name}
+                    <span className="block max-w-[80px] sm:max-w-[120px] md:max-w-[150px] truncate">
+                      {truncateName(crumb.name)}
+                    </span>
                   </button>
                 </div>
               ))}
