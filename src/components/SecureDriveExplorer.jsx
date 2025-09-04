@@ -5,9 +5,10 @@ import {
   getPublicFileUrl, 
   isFolder,
   formatFileSize,
-  formatDate
+  formatDate,
+  getFolderFileCount
 } from '../services/publicDrive';
-import { ArrowTopRightOnSquareIcon, MagnifyingGlassIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { ArrowTopRightOnSquareIcon, MagnifyingGlassIcon, ArrowPathIcon, Squares2X2Icon, ListBulletIcon } from '@heroicons/react/24/outline';
 import FileIcon from './FileIcon';
 import { SkeletonGrid } from './SkeletonLoader';
 
@@ -18,6 +19,8 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentFolder, setCurrentFolder] = useState(rootFolderId);
   const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [viewMode, setViewMode] = useState('grid');
+  const [folderFileCounts, setFolderFileCounts] = useState({});
   useEffect(() => {
     loadFiles();
   }, [currentFolder]);
@@ -33,6 +36,24 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
       const fileList = await listFiles(currentFolder);
       console.log('Files loaded:', fileList);
       setFiles(fileList);
+      
+      // Get file counts for folders
+      const folders = fileList.filter(file => isFolder(file));
+      const counts = {};
+      
+      await Promise.all(
+        folders.map(async (folder) => {
+          try {
+            const count = await getFolderFileCount(folder.id);
+            counts[folder.id] = count;
+          } catch (error) {
+            console.error(`Error getting count for folder ${folder.name}:`, error);
+            counts[folder.id] = 0;
+          }
+        })
+      );
+      
+      setFolderFileCounts(counts);
     } catch (error) {
       console.error('Error loading files:', error);
       setError(error.message);
@@ -109,43 +130,73 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
               <p className="text-gray-600 dark:text-gray-300">Explora y descarga los apuntes organizados por carrera</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
-            <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 px-3 py-1.5 rounded-lg">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-green-700 dark:text-green-400 font-medium">Conexión segura</span>
-            </div>
-          </div>
+          
         </div>
 
-        {/* Search Bar */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-6 md:mb-8">
-          <div className="flex-1 relative">
-            <input
-              type="text"
-              placeholder="🔍 Buscar archivos y carpetas..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-              className="w-full px-4 md:px-5 py-3 md:py-4 pl-10 md:pl-12 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all duration-300 text-base md:text-lg mobile-search bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-            />
-            <MagnifyingGlassIcon className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 md:h-6 md:w-6 text-gray-400 dark:text-gray-500" />
-          </div>
-          <div className="flex gap-3">
-            <button
-              onClick={handleSearch}
-              className="flex-1 sm:flex-none px-4 md:px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2"
-            >
-              <MagnifyingGlassIcon className="w-4 h-4" />
-              <span className="hidden sm:inline">Buscar</span>
-            </button>
-            {searchTerm && (
+        {/* Search Bar and View Toggle */}
+        <div className="flex flex-col gap-4 mb-6 md:mb-8">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                placeholder="Buscar archivos y carpetas..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                className="w-full px-4 md:px-5 py-3 md:py-4 pl-10 md:pl-12 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all duration-300 text-base md:text-lg mobile-search bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              />
+              <MagnifyingGlassIcon className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 md:h-6 md:w-6 text-gray-400 dark:text-gray-500" />
+            </div>
+            <div className="flex gap-3">
               <button
-                onClick={() => {setSearchTerm(''); loadFiles();}}
-                className="flex-1 sm:flex-none px-4 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5"
+                onClick={handleSearch}
+                className="flex-1 sm:flex-none px-4 md:px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2"
               >
-                Limpiar
+                <MagnifyingGlassIcon className="w-4 h-4" />
+                <span className="hidden sm:inline">Buscar</span>
               </button>
-            )}
+              {searchTerm && (
+                <button
+                  onClick={() => {setSearchTerm(''); loadFiles();}}
+                  className="flex-1 sm:flex-none px-4 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5"
+                >
+                  Limpiar
+                </button>
+              )}
+            </div>
+          </div>
+          
+          {/* View Toggle */}
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-600 dark:text-gray-400">
+              {files.length > 0 && `${files.length} elemento${files.length !== 1 ? 's' : ''}`}
+            </div>
+            <div className="flex rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-700">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`flex items-center px-3 py-2 rounded-md transition-colors text-sm font-medium ${
+                  viewMode === 'grid'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                }`}
+                title="Vista en cuadrícula"
+              >
+                <Squares2X2Icon className="w-4 h-4 mr-2" />
+                <span className="hidden sm:inline">Cuadrícula</span>
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`flex items-center px-3 py-2 rounded-md transition-colors text-sm font-medium ${
+                  viewMode === 'list'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                }`}
+                title="Vista horizontal"
+              >
+                <ListBulletIcon className="w-4 h-4 mr-2" />
+                <span className="hidden sm:inline">Lista</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -215,7 +266,7 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
           </div>
         )}
 
-        {/* Files Grid */}
+        {/* Files Display */}
         {!loading && !error && (
           <div className="animate-fade-in">
             {files.length === 0 ? (
@@ -230,7 +281,8 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                   </p>
                 </div>
               </div>
-            ) : (
+            ) : viewMode === 'grid' ? (
+              // Grid View
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-6 mobile-card-spacing grid-responsive">
                 {files.map((file, index) => (
                   <div
@@ -258,9 +310,15 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                     </h3>
                     
                     <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                      {isFolder(file) && folderFileCounts[file.id] !== undefined && (
+                        <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                          <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-400 rounded-full"></span>
+                          <span className="truncate font-medium">{folderFileCounts[file.id]} archivos</span>
+                        </div>
+                      )}
                       {file.size && (
                         <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                          <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-400 rounded-full"></span>
+                          <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-purple-400 rounded-full"></span>
                           <span className="truncate">{formatFileSize(file.size)}</span>
                         </div>
                       )}
@@ -287,6 +345,78 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
                           )}
                         </span>
                       </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              // List View
+              <div className="space-y-3">
+                {files.map((file, index) => (
+                  <div
+                    key={file.id}
+                    onClick={() => handleFileClick(file)}
+                    className="group bg-white dark:bg-gray-800 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md animate-fade-in flex items-center gap-4"
+                    style={{ animationDelay: `${index * 30}ms` }}
+                  >
+                    {/* File Icon */}
+                    <div className="flex-shrink-0 p-3 bg-gray-100 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 rounded-lg transition-all duration-200">
+                      <FileIcon 
+                        mimeType={file.mimeType} 
+                        fileName={file.name} 
+                        isFolder={isFolder(file)} 
+                        size="w-6 h-6" 
+                      />
+                    </div>
+                    
+                    {/* File Info */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300 text-lg truncate mb-1">
+                        {file.name}
+                      </h3>
+                      
+                      <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+                        {isFolder(file) && folderFileCounts[file.id] !== undefined && (
+                          <span className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium">
+                            <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                            {folderFileCounts[file.id]} archivos
+                          </span>
+                        )}
+                        {file.size && (
+                          <span className="inline-flex items-center gap-2">
+                            <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                            {formatFileSize(file.size)}
+                          </span>
+                        )}
+                        {file.modifiedTime && (
+                          <span className="inline-flex items-center gap-2">
+                            <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                            {formatDate(file.modifiedTime)}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    
+                    {/* Action Button */}
+                    <div className="flex-shrink-0 flex items-center gap-3">
+                      <span className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 group-hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-all duration-200">
+                        {isFolder(file) ? (
+                          <>
+                            <span>📁</span>
+                            <span className="hidden sm:inline">Abrir carpeta</span>
+                            <span className="sm:hidden">Abrir</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>📄</span>
+                            <span className="hidden sm:inline">Ver archivo</span>
+                            <span className="sm:hidden">Ver</span>
+                          </>
+                        )}
+                      </span>
+                      {!isFolder(file) && (
+                        <ArrowTopRightOnSquareIcon className="w-5 h-5 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 group-hover:text-blue-500 transition-all duration-300" />
+                      )}
                     </div>
                   </div>
                 ))}
