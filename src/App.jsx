@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
 
 const Home = lazy(() => import('./pages/Home'))
+const Ranking = lazy(() => import('./pages/Ranking'))
 const ProgramView = lazy(() => import('./pages/ProgramView'))
 const SubjectView = lazy(() => import('./pages/SubjectView'))
 const Information = lazy(() => import('./pages/Information'))
@@ -24,6 +25,7 @@ function App() {
               <Suspense fallback={<LoadingSpinner />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/ranking" element={<Ranking />} />
                   <Route path="/search" element={<SearchResults />} />
                   <Route path="/program/:programId" element={<ProgramView />} />
                   <Route path="/program/:programId/year/:yearId" element={<SubjectView />} />
