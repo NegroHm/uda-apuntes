@@ -1,5 +1,6 @@
 import React from 'react'
 import SecureDriveExplorer from '../components/SecureDriveExplorer'
+import TopCareerWidget from '../components/TopCareerWidget'
 
 const Home = () => {
   return (
@@ -56,6 +57,11 @@ const Home = () => {
               📚 Contribuye con apuntes
             </a>
           </div>
+        </div>
+
+        {/* Top Career Widget */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <TopCareerWidget />
         </div>
 
         {/* Secure Drive Explorer */}
