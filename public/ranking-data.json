@@ -1,6 +1,6 @@
 {
   "lastUpdate": "2024-09-15T14:30:00.000Z",
-  "totalCareers": 12,
+  "totalCareers": 15,
   "topCareers": [
     {
       "id": "1BcD4eFg5HiJ6kLm",
@@ -81,6 +81,86 @@
         "presentations": 190
       },
       "foldersProcessed": 25
+    },
+    {
+      "id": "6KlM7nOp8QrS9tUv",
+      "name": "Lic. en Administración",
+      "facultyName": "Facultad de Ciencias Económicas",
+      "icon": "💼",
+      "rank": 6,
+      "totalFiles": 1543,
+      "totalScore": 3687,
+      "fileTypes": {
+        "pdf": 712,
+        "word": 398,
+        "images": 256,
+        "presentations": 177
+      },
+      "foldersProcessed": 22
+    },
+    {
+      "id": "7WxY8zA9bCd0eFg1",
+      "name": "Prof. en Educación Primaria",
+      "facultyName": "Facultad de Humanidades",
+      "icon": "👩‍🏫",
+      "rank": 7,
+      "totalFiles": 1324,
+      "totalScore": 3156,
+      "fileTypes": {
+        "pdf": 634,
+        "word": 356,
+        "images": 212,
+        "presentations": 122
+      },
+      "foldersProcessed": 19
+    },
+    {
+      "id": "8HiJ2kLm3NpQ4rSt",
+      "name": "Lic. en Comunicación",
+      "facultyName": "Facultad de Humanidades",
+      "icon": "📺",
+      "rank": 8,
+      "totalFiles": 1198,
+      "totalScore": 2845,
+      "fileTypes": {
+        "pdf": 567,
+        "word": 321,
+        "images": 198,
+        "presentations": 112
+      },
+      "foldersProcessed": 17
+    },
+    {
+      "id": "9UvW5xYz6AbC7dEf",
+      "name": "Tecnicatura en Sistemas",
+      "facultyName": "Facultad de Ciencias Exactas y Naturales",
+      "icon": "🔧",
+      "rank": 9,
+      "totalFiles": 987,
+      "totalScore": 2345,
+      "fileTypes": {
+        "pdf": 456,
+        "word": 267,
+        "images": 156,
+        "presentations": 108
+      },
+      "foldersProcessed": 15
+    },
+    {
+      "id": "0GhI8jKl9MnO0pQr",
+      "name": "Lic. en Diseño Gráfico",
+      "facultyName": "Facultad de Artes",
+      "icon": "🎨",
+      "rank": 10,
+      "totalFiles": 876,
+      "totalScore": 2087,
+      "fileTypes": {
+        "pdf": 398,
+        "word": 234,
+        "images": 167,
+        "presentations": 77
+      },
+      "foldersProcessed": 13
     }
   ],
   "allCareers": [
@@ -275,6 +355,54 @@
         "presentations": 44
       },
       "foldersProcessed": 8
+    },
+    {
+      "id": "3GhI6jKl7MnO8pQr",
+      "name": "Lic. en Marketing",
+      "facultyName": "Facultad de Ciencias Económicas",
+      "icon": "📈",
+      "rank": 13,
+      "totalFiles": 612,
+      "totalScore": 1456,
+      "fileTypes": {
+        "pdf": 298,
+        "word": 178,
+        "images": 102,
+        "presentations": 34
+      },
+      "foldersProcessed": 9
+    },
+    {
+      "id": "4StU9vWx0YzA1bCd",
+      "name": "Lic. en Enfermería",
+      "facultyName": "Facultad de Medicina",
+      "icon": "👩‍⚕️",
+      "rank": 14,
+      "totalFiles": 589,
+      "totalScore": 1387,
+      "fileTypes": {
+        "pdf": 267,
+        "word": 145,
+        "images": 134,
+        "presentations": 43
+      },
+      "foldersProcessed": 12
+    },
+    {
+      "id": "5eFg8hIj9KlM0nOp",
+      "name": "Escribanía",
+      "facultyName": "Facultad de Derecho",
+      "icon": "📜",
+      "rank": 15,
+      "totalFiles": 445,
+      "totalScore": 1123,
+      "fileTypes": {
+        "pdf": 203,
+        "word": 134,
+        "images": 78,
+        "presentations": 30
+      },
+      "foldersProcessed": 7
     }
   ],
   "metadata": {
