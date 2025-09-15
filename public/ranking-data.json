@@ -1,0 +1,291 @@
+{
+  "lastUpdate": "2024-09-15T14:30:00.000Z",
+  "totalCareers": 12,
+  "topCareers": [
+    {
+      "id": "1BcD4eFg5HiJ6kLm",
+      "name": "Lic. en Informática",
+      "facultyName": "Facultad de Ciencias Exactas y Naturales",
+      "icon": "💻",
+      "rank": 1,
+      "totalFiles": 2847,
+      "totalScore": 6891,
+      "fileTypes": {
+        "pdf": 1456,
+        "word": 824,
+        "images": 387,
+        "presentations": 180
+      },
+      "foldersProcessed": 45
+    },
+    {
+      "id": "2NpQ7rSt8UvW9xYz",
+      "name": "Medicina",
+      "facultyName": "Facultad de Medicina",
+      "icon": "⚕️",
+      "rank": 2,
+      "totalFiles": 2654,
+      "totalScore": 6124,
+      "fileTypes": {
+        "pdf": 1234,
+        "word": 756,
+        "images": 534,
+        "presentations": 130
+      },
+      "foldersProcessed": 38
+    },
+    {
+      "id": "3AbC8dEf9GhI0jKl",
+      "name": "Abogacía",
+      "facultyName": "Facultad de Derecho",
+      "icon": "⚖️",
+      "rank": 3,
+      "totalFiles": 2245,
+      "totalScore": 5387,
+      "fileTypes": {
+        "pdf": 1089,
+        "word": 645,
+        "images": 398,
+        "presentations": 113
+      },
+      "foldersProcessed": 32
+    },
+    {
+      "id": "4MnO5pQr6StU7vWx",
+      "name": "Contador Público",
+      "facultyName": "Facultad de Ciencias Económicas",
+      "icon": "🧮",
+      "rank": 4,
+      "totalFiles": 1987,
+      "totalScore": 4756,
+      "fileTypes": {
+        "pdf": 945,
+        "word": 534,
+        "images": 312,
+        "presentations": 196
+      },
+      "foldersProcessed": 28
+    },
+    {
+      "id": "5YzA6bCd7eFg8hIj",
+      "name": "Lic. en Psicología",
+      "facultyName": "Facultad de Humanidades",
+      "icon": "🧠",
+      "rank": 5,
+      "totalFiles": 1756,
+      "totalScore": 4234,
+      "fileTypes": {
+        "pdf": 823,
+        "word": 456,
+        "images": 287,
+        "presentations": 190
+      },
+      "foldersProcessed": 25
+    }
+  ],
+  "allCareers": [
+    {
+      "id": "1BcD4eFg5HiJ6kLm",
+      "name": "Lic. en Informática",
+      "facultyName": "Facultad de Ciencias Exactas y Naturales",
+      "icon": "💻",
+      "rank": 1,
+      "totalFiles": 2847,
+      "totalScore": 6891,
+      "fileTypes": {
+        "pdf": 1456,
+        "word": 824,
+        "images": 387,
+        "presentations": 180
+      },
+      "foldersProcessed": 45
+    },
+    {
+      "id": "2NpQ7rSt8UvW9xYz",
+      "name": "Medicina",
+      "facultyName": "Facultad de Medicina",
+      "icon": "⚕️",
+      "rank": 2,
+      "totalFiles": 2654,
+      "totalScore": 6124,
+      "fileTypes": {
+        "pdf": 1234,
+        "word": 756,
+        "images": 534,
+        "presentations": 130
+      },
+      "foldersProcessed": 38
+    },
+    {
+      "id": "3AbC8dEf9GhI0jKl",
+      "name": "Abogacía",
+      "facultyName": "Facultad de Derecho",
+      "icon": "⚖️",
+      "rank": 3,
+      "totalFiles": 2245,
+      "totalScore": 5387,
+      "fileTypes": {
+        "pdf": 1089,
+        "word": 645,
+        "images": 398,
+        "presentations": 113
+      },
+      "foldersProcessed": 32
+    },
+    {
+      "id": "4MnO5pQr6StU7vWx",
+      "name": "Contador Público",
+      "facultyName": "Facultad de Ciencias Económicas",
+      "icon": "🧮",
+      "rank": 4,
+      "totalFiles": 1987,
+      "totalScore": 4756,
+      "fileTypes": {
+        "pdf": 945,
+        "word": 534,
+        "images": 312,
+        "presentations": 196
+      },
+      "foldersProcessed": 28
+    },
+    {
+      "id": "5YzA6bCd7eFg8hIj",
+      "name": "Lic. en Psicología",
+      "facultyName": "Facultad de Humanidades",
+      "icon": "🧠",
+      "rank": 5,
+      "totalFiles": 1756,
+      "totalScore": 4234,
+      "fileTypes": {
+        "pdf": 823,
+        "word": 456,
+        "images": 287,
+        "presentations": 190
+      },
+      "foldersProcessed": 25
+    },
+    {
+      "id": "6KlM7nOp8QrS9tUv",
+      "name": "Lic. en Administración",
+      "facultyName": "Facultad de Ciencias Económicas",
+      "icon": "💼",
+      "rank": 6,
+      "totalFiles": 1543,
+      "totalScore": 3687,
+      "fileTypes": {
+        "pdf": 712,
+        "word": 398,
+        "images": 256,
+        "presentations": 177
+      },
+      "foldersProcessed": 22
+    },
+    {
+      "id": "7WxY8zA9bCd0eFg1",
+      "name": "Prof. en Educación Primaria",
+      "facultyName": "Facultad de Humanidades",
+      "icon": "👩‍🏫",
+      "rank": 7,
+      "totalFiles": 1324,
+      "totalScore": 3156,
+      "fileTypes": {
+        "pdf": 634,
+        "word": 356,
+        "images": 212,
+        "presentations": 122
+      },
+      "foldersProcessed": 19
+    },
+    {
+      "id": "8HiJ2kLm3NpQ4rSt",
+      "name": "Lic. en Comunicación",
+      "facultyName": "Facultad de Humanidades",
+      "icon": "📺",
+      "rank": 8,
+      "totalFiles": 1198,
+      "totalScore": 2845,
+      "fileTypes": {
+        "pdf": 567,
+        "word": 321,
+        "images": 198,
+        "presentations": 112
+      },
+      "foldersProcessed": 17
+    },
+    {
+      "id": "9UvW5xYz6AbC7dEf",
+      "name": "Tecnicatura en Sistemas",
+      "facultyName": "Facultad de Ciencias Exactas y Naturales",
+      "icon": "🔧",
+      "rank": 9,
+      "totalFiles": 987,
+      "totalScore": 2345,
+      "fileTypes": {
+        "pdf": 456,
+        "word": 267,
+        "images": 156,
+        "presentations": 108
+      },
+      "foldersProcessed": 15
+    },
+    {
+      "id": "0GhI8jKl9MnO0pQr",
+      "name": "Lic. en Diseño Gráfico",
+      "facultyName": "Facultad de Artes",
+      "icon": "🎨",
+      "rank": 10,
+      "totalFiles": 876,
+      "totalScore": 2087,
+      "fileTypes": {
+        "pdf": 398,
+        "word": 234,
+        "images": 167,
+        "presentations": 77
+      },
+      "foldersProcessed": 13
+    },
+    {
+      "id": "1StU2vWx3YzA4bCd",
+      "name": "Lic. en Turismo",
+      "facultyName": "Facultad de Ciencias Económicas",
+      "icon": "✈️",
+      "rank": 11,
+      "totalFiles": 734,
+      "totalScore": 1756,
+      "fileTypes": {
+        "pdf": 345,
+        "word": 198,
+        "images": 123,
+        "presentations": 68
+      },
+      "foldersProcessed": 11
+    },
+    {
+      "id": "2eFg5hIj6KlM7nOp",
+      "name": "Sommelier",
+      "facultyName": "Facultad de Ciencias Económicas",
+      "icon": "🍷",
+      "rank": 12,
+      "totalFiles": 523,
+      "totalScore": 1234,
+      "fileTypes": {
+        "pdf": 234,
+        "word": 156,
+        "images": 89,
+        "presentations": 44
+      },
+      "foldersProcessed": 8
+    }
+  ],
+  "metadata": {
+    "generatedAt": "2024-09-15T14:30:00.000Z",
+    "version": "1.0",
+    "description": "Ranking de carreras basado en cantidad y tipo de archivos académicos",
+    "scoringSystem": {
+      "pdf": 3,
+      "word": 2, 
+      "powerpoint": 2,
+      "images": 1
+    }
+  }
+}

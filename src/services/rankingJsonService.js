@@ -4,6 +4,7 @@
 import { listPublicFiles as listFiles } from './publicDrive'
 
 const RANKING_JSON_FILE = 'ranking-data.json'
+const RANKING_JSON_URL = '/ranking-data.json' // Archivo estático en public/
 const MAIN_FOLDER_ID = '1oOYF9Od5NeSErp7lokq95pQ37voukBvu'
 
 // Filtrar carpetas que comienzan con prefijos específicos de carreras
@@ -293,17 +294,31 @@ export const RankingJsonService = {
     }
   },
   
-  // Cargar datos desde localStorage
-  loadRankingJson() {
+  // Cargar datos desde archivo JSON estático
+  async loadRankingJson() {
     try {
-      const data = localStorage.getItem(RANKING_JSON_FILE)
-      if (data) {
-        const parsed = JSON.parse(data)
+      // Primero intentar desde localStorage (para actualizaciones)
+      const localData = localStorage.getItem(RANKING_JSON_FILE)
+      if (localData) {
+        const parsed = JSON.parse(localData)
         console.log('✅ Ranking JSON cargado desde localStorage')
         return parsed
       }
-      console.log('❌ No hay datos de ranking en localStorage')
-      return null
+
+      // Si no hay datos locales, cargar desde archivo estático
+      console.log('📄 Cargando ranking JSON desde archivo estático...')
+      const response = await fetch(RANKING_JSON_URL)
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      console.log('✅ Ranking JSON cargado desde archivo estático')
+      
+      // Guardar en localStorage para futuras consultas
+      localStorage.setItem(RANKING_JSON_FILE, JSON.stringify(data))
+      
+      return data
     } catch (error) {
       console.error('❌ Error cargando ranking JSON:', error)
       return null
@@ -311,7 +326,7 @@ export const RankingJsonService = {
   },
   
   // Verificar si necesita actualización (lunes por la mañana)
-  shouldUpdateRanking() {
+  async shouldUpdateRanking() {
     const now = new Date()
     const isMonday = now.getDay() === 1
     const isAfter8AM = now.getHours() >= 8
@@ -320,7 +335,7 @@ export const RankingJsonService = {
       return false
     }
     
-    const data = this.loadRankingJson()
+    const data = await this.loadRankingJson()
     if (!data || !data.lastUpdate) {
       return true
     }
@@ -348,18 +363,16 @@ export const RankingJsonService = {
     }
   },
   
-  // Obtener datos del ranking (cargados o generar nuevos)
-  async getRankingData(forceUpdate = false) {
-    if (!forceUpdate) {
-      const existingData = this.loadRankingJson()
-      if (existingData) {
-        console.log('📊 Usando datos de ranking existentes')
-        return existingData
-      }
+  // Obtener datos del ranking (siempre desde JSON, solo actualiza automáticamente los lunes)
+  async getRankingData() {
+    console.log('📊 Cargando datos de ranking...')
+    const data = await this.loadRankingJson()
+    
+    if (!data) {
+      throw new Error('No se pudieron cargar los datos del ranking')
     }
     
-    console.log('🔄 Generando nuevos datos de ranking...')
-    return await this.updateRanking()
+    return data
   }
 }
 

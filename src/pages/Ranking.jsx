@@ -12,22 +12,6 @@ const Ranking = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [isUpdating, setIsUpdating] = useState(false)
-  
-  // Manual refresh function
-  const handleManualRefresh = async () => {
-    if (isUpdating) return
-    console.log('🔄 Actualización manual solicitada')
-    setIsUpdating(true)
-    try {
-      const newData = await RankingJsonService.updateRanking()
-      setRankingData(newData)
-    } catch (err) {
-      console.error('Error en actualización manual:', err)
-      setError(err.message)
-    } finally {
-      setIsUpdating(false)
-    }
-  }
 
   // Funciones de análisis movidas a RankingJsonService
 
@@ -40,15 +24,16 @@ const Ranking = () => {
       
       try {
         // Verificar si necesita actualización automática los lunes
-        if (RankingJsonService.shouldUpdateRanking()) {
+        const shouldUpdate = await RankingJsonService.shouldUpdateRanking()
+        if (shouldUpdate) {
           console.log('🗓️ Actualización automática de lunes detectada')
           setIsUpdating(true)
           const newData = await RankingJsonService.updateRanking()
           setRankingData(newData)
           setIsUpdating(false)
         } else {
-          // Cargar datos existentes o generar si no existen
-          console.log('📊 Cargando datos de ranking existentes')
+          // Cargar datos desde JSON estático
+          console.log('📊 Cargando datos de ranking desde JSON')
           const data = await RankingJsonService.getRankingData()
           setRankingData(data)
         }
@@ -63,8 +48,9 @@ const Ranking = () => {
     loadRankingData()
     
     // Verificar cada 4 horas si es lunes y necesita actualización
-    const mondayCheckInterval = setInterval(() => {
-      if (RankingJsonService.shouldUpdateRanking()) {
+    const mondayCheckInterval = setInterval(async () => {
+      const shouldUpdate = await RankingJsonService.shouldUpdateRanking()
+      if (shouldUpdate) {
         console.log('🗓️ Actualización programada de lunes activada')
         loadRankingData()
       }
@@ -170,7 +156,7 @@ const Ranking = () => {
             Las carreras con mayor cantidad de material académico disponible
           </p>
           
-          {/* JSON Status and Manual Refresh */}
+          {/* JSON Status */}
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
             {rankingData && (
               <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 px-4 py-2 rounded-full text-sm text-blue-800 dark:text-blue-200">
@@ -181,17 +167,6 @@ const Ranking = () => {
                 })}
               </div>
             )}
-            
-            <button
-              onClick={handleManualRefresh}
-              disabled={isUpdating}
-              className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed"
-            >
-              <div className={`w-4 h-4 ${isUpdating ? 'animate-spin' : ''}`}>
-                {isUpdating ? '⚡' : '🔄'}
-              </div>
-              {isUpdating ? 'Analizando...' : 'Actualizar Ahora'}
-            </button>
           </div>
         </div>
 
