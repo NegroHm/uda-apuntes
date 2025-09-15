@@ -1,4 +1,6 @@
 // Ranking Cache Service - Updates every Monday morning
+// Sistema de caché que evita recargas innecesarias del ranking de carreras
+// Se actualiza automáticamente cada lunes a las 08:00 para optimizar rendimiento
 const CACHE_KEY = 'career_ranking_data'
 const CACHE_VERSION_KEY = 'career_ranking_version'
 const LAST_UPDATE_KEY = 'career_ranking_last_update'

@@ -3,6 +3,8 @@ import { TrophyIcon, DocumentIcon, PhotoIcon, PresentationChartBarIcon, ClockIco
 import { listPublicFiles as listFiles } from '../services/publicDrive'
 import RankingCacheService from '../services/rankingCache'
 
+// Componente optimizado que utiliza caché para evitar recarga constante del ranking
+
 // Filter folders that start with specific career prefixes
 const isCareerFolder = (folderName) => {
   const name = folderName.trim() // Remove any leading/trailing spaces
