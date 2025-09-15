@@ -149,7 +149,7 @@ const Ranking = () => {
             Ranking de Carreras
           </h1>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Top 10 carreras con mayor material académico
+            Top 5 carreras con mayor material académico
           </p>
           
           {/* Status actualización */}
