@@ -1,380 +1,74 @@
 import React, { useState, useEffect } from 'react'
 import { TrophyIcon, DocumentIcon, PhotoIcon, PresentationChartBarIcon, ClockIcon } from '@heroicons/react/24/outline'
-import { listPublicFiles as listFiles } from '../services/publicDrive'
-import RankingCacheService from '../services/rankingCache'
+import RankingJsonService from '../services/rankingJsonService'
 
-// Componente optimizado que utiliza caché para evitar recarga constante del ranking
+// Componente optimizado que utiliza JSON para el ranking de carreras
+// Los datos se actualizan cada lunes a las 08:00 automáticamente
 
-// Filter folders that start with specific career prefixes
-const isCareerFolder = (folderName) => {
-  const name = folderName.trim() // Remove any leading/trailing spaces
-  
-  // Exact prefixes that career folders start with
-  const careerPrefixes = [
-    'Lic.',
-    'Prof',
-    'Tecnicatura',
-    'Tec',
-    'Medicina',
-    'Maestría',
-    'Escribania',
-    'Contador',
-    'Abogacía',
-    'Traductor', 
-    'Sommelier'
-  ]
-  
-  // Check if folder name starts with any of the career prefixes
-  return careerPrefixes.some(prefix => name.startsWith(prefix))
-}
-
-const getCareerIcon = (folderName) => {
-  const name = folderName.toLowerCase()
-  
-  // Match specific prefixes and career types
-  if (name.startsWith('medicina')) return '⚕️'
-  if (name.startsWith('contador')) return '🧮'
-  if (name.startsWith('abogacía')) return '⚖️'
-  if (name.startsWith('traductor')) return '🗣️'
-  if (name.startsWith('sommelier')) return '🍷'
-  if (name.startsWith('escribania')) return '📜'
-  if (name.startsWith('maestría')) return '🎓'
-  if (name.startsWith('prof')) return '👩‍🏫'
-  if (name.startsWith('tecnicatura') || name.startsWith('tec')) return '🔧'
-  
-  // Lic. prefix - check specific career types
-  if (name.startsWith('lic.')) {
-    if (name.includes('informática') || name.includes('informatica') || name.includes('software') || name.includes('sistemas')) return '💻'
-    if (name.includes('psicología') || name.includes('psicologia')) return '🧠'
-    if (name.includes('diseño') || name.includes('diseno') || name.includes('gráfico') || name.includes('grafico')) return '🎨'
-    if (name.includes('marketing') || name.includes('mercadeo')) return '📈'
-    if (name.includes('turismo') || name.includes('hotelería') || name.includes('hoteleria')) return '✈️'
-    if (name.includes('administración') || name.includes('administracion') || name.includes('empresas')) return '💼'
-    if (name.includes('comunicación') || name.includes('comunicacion') || name.includes('periodismo')) return '📺'
-    if (name.includes('enfermería') || name.includes('enfermeria')) return '👩‍⚕️'
-    if (name.includes('educación') || name.includes('educacion')) return '📚'
-    return '🎓' // Default for other Lic. careers
-  }
-  
-  return '🎓' // Default icon for careers not specifically matched
-}
-
-const getCareerColor = (index) => {
-  const colors = [
-    'bg-blue-500', 'bg-purple-500', 'bg-pink-500', 'bg-green-500', 'bg-orange-500',
-    'bg-red-500', 'bg-yellow-500', 'bg-indigo-500', 'bg-teal-500', 'bg-cyan-500',
-    'bg-lime-500', 'bg-emerald-500', 'bg-violet-500', 'bg-fuchsia-500', 'bg-rose-500'
-  ]
-  return colors[index % colors.length]
-}
-
-const MAIN_FOLDER_ID = '1oOYF9Od5NeSErp7lokq95pQ37voukBvu'
+// Las funciones de análisis ahora están en rankingJsonService.js
 
 const Ranking = () => {
-  const [careerData, setCareerData] = useState([])
+  const [rankingData, setRankingData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [careers, setCareers] = useState([])
-  const [cacheInfo, setCacheInfo] = useState(null)
   const [isUpdating, setIsUpdating] = useState(false)
   
   // Manual refresh function
   const handleManualRefresh = async () => {
     if (isUpdating) return
-    console.log('🔄 Manual refresh requested')
-    await fetchAllCareerData(true)
-  }
-
-  const calculateFileScore = (file) => {
-    const mimeType = file.mimeType
-    const name = file.name.toLowerCase()
-    
-    // PDF files = 3 points
-    if (mimeType === 'application/pdf' || name.endsWith('.pdf')) {
-      return 3
-    }
-    
-    // Word documents = 2 points
-    if (mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-        mimeType === 'application/msword' ||
-        name.endsWith('.docx') || name.endsWith('.doc')) {
-      return 2
-    }
-    
-    // Images = 1 point
-    if (mimeType?.startsWith('image/') || 
-        name.endsWith('.jpg') || name.endsWith('.jpeg') || 
-        name.endsWith('.png') || name.endsWith('.gif') || 
-        name.endsWith('.webp')) {
-      return 1
-    }
-    
-    // PowerPoint presentations = 2 points
-    if (mimeType === 'application/vnd.openxmlformats-officedocument.presentationml.presentation' ||
-        mimeType === 'application/vnd.ms-powerpoint' ||
-        name.endsWith('.pptx') || name.endsWith('.ppt')) {
-      return 2
-    }
-    
-    return 0
-  }
-
-  // Complete analysis: Count ALL files recursively without limitations
-  const getCompleteFileCount = async (folderId, path = '', depth = 0) => {
-    let totalFiles = 0
-    let totalScore = 0
-    let fileTypes = { pdf: 0, word: 0, images: 0, presentations: 0 }
-    let foldersProcessed = 0
-    
-    const processFolder = async (currentFolderId, currentPath = '', currentDepth = 0) => {
-      try {
-        const indentation = '  '.repeat(currentDepth)
-        console.log(`${indentation}📂 [Depth ${currentDepth}] Analyzing: ${currentPath}`)
-        
-        const items = await listFiles(currentFolderId)
-        
-        // Process all files in current folder
-        const files = items.filter(item => item.mimeType !== 'application/vnd.google-apps.folder')
-        const folders = items.filter(item => item.mimeType === 'application/vnd.google-apps.folder')
-        
-        console.log(`${indentation}   └── Found ${files.length} files, ${folders.length} subfolders`)
-        
-        // Count and categorize files
-        files.forEach(file => {
-          totalFiles++
-          const score = calculateFileScore(file)
-          totalScore += score
-          
-          const mimeType = file.mimeType
-          const name = file.name.toLowerCase()
-          
-          if (mimeType === 'application/pdf' || name.endsWith('.pdf')) {
-            fileTypes.pdf++
-          } else if (mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-                     mimeType === 'application/msword' ||
-                     name.endsWith('.docx') || name.endsWith('.doc')) {
-            fileTypes.word++
-          } else if (mimeType?.startsWith('image/') || 
-                     name.endsWith('.jpg') || name.endsWith('.jpeg') || 
-                     name.endsWith('.png') || name.endsWith('.gif') || 
-                     name.endsWith('.webp')) {
-            fileTypes.images++
-          } else if (mimeType === 'application/vnd.openxmlformats-officedocument.presentationml.presentation' ||
-                     mimeType === 'application/vnd.ms-powerpoint' ||
-                     name.endsWith('.pptx') || name.endsWith('.ppt')) {
-            fileTypes.presentations++
-          }
-        })
-        
-        // Process ALL subfolders recursively
-        for (const folder of folders) {
-          const newPath = currentPath ? `${currentPath}/${folder.name}` : folder.name
-          await processFolder(folder.id, newPath, currentDepth + 1)
-          foldersProcessed++
-        }
-        
-      } catch (error) {
-        console.error(`❌ Error processing folder ${currentPath}:`, error)
-      }
-    }
-    
-    console.log(`🔍 Starting complete analysis of: ${path}`)
-    await processFolder(folderId, path, depth)
-    
-    console.log(`✅ Analysis complete for ${path}:`)
-    console.log(`   📁 Total folders processed: ${foldersProcessed}`)
-    console.log(`   📄 Total files found: ${totalFiles}`)
-    console.log(`   📊 Score breakdown:`)
-    console.log(`      📕 PDFs: ${fileTypes.pdf} (${fileTypes.pdf * 3} pts)`)
-    console.log(`      📘 Word: ${fileTypes.word} (${fileTypes.word * 2} pts)`)
-    console.log(`      📙 PPT: ${fileTypes.presentations} (${fileTypes.presentations * 2} pts)`) 
-    console.log(`      🖼️ Images: ${fileTypes.images} (${fileTypes.images * 1} pts)`)
-    console.log(`   🏆 Total Score: ${totalScore} points`)
-    
-    return {
-      totalFiles,
-      totalScore,
-      fileTypes,
-      foldersProcessed
-    }
-  }
-
-  const fetchCareerFiles = async (careerFolder) => {
+    console.log('🔄 Actualización manual solicitada')
+    setIsUpdating(true)
     try {
-      console.log('🔍 Complete analysis for:', careerFolder.name)
-      return await getCompleteFileCount(careerFolder.id, careerFolder.name)
-    } catch (error) {
-      console.error(`Error fetching files for ${careerFolder.name}:`, error)
-      return { totalFiles: 0, totalScore: 0, fileTypes: { pdf: 0, word: 0, images: 0, presentations: 0 } }
+      const newData = await RankingJsonService.updateRanking()
+      setRankingData(newData)
+    } catch (err) {
+      console.error('Error en actualización manual:', err)
+      setError(err.message)
+    } finally {
+      setIsUpdating(false)
     }
   }
 
-  const getAllFilesRecursively = async (folderId) => {
-    try {
-      const items = await listFiles(folderId)
-      let allFiles = []
-      
-      for (const item of items) {
-        if (item.mimeType === 'application/vnd.google-apps.folder') {
-          const subFiles = await getAllFilesRecursively(item.id)
-          allFiles = allFiles.concat(subFiles)
-        } else {
-          allFiles.push(item)
-        }
-      }
-      
-      return allFiles
-    } catch (error) {
-      console.error('Error fetching files recursively:', error)
-      return []
-    }
-  }
+  // Funciones de análisis movidas a RankingJsonService
 
   useEffect(() => {
-    console.log('Ranking component mounted')
+    console.log('🏆 Ranking component mounted')
     
-    const fetchAllCareerData = async (forceRefresh = false) => {
+    const loadRankingData = async () => {
       setLoading(true)
       setError(null)
       
-      // Check cache first (unless force refresh)
-      if (!forceRefresh) {
-        const cached = RankingCacheService.getCachedData()
-        if (cached && RankingCacheService.isCacheValid()) {
-          console.log('✅ Using cached ranking data from:', cached.lastUpdate)
-          setCareerData(cached.data)
-          setLoading(false)
-          setCacheInfo(RankingCacheService.getCacheInfo())
-          return
-        }
-      }
-      
-      // If no valid cache or force refresh, fetch fresh data
       try {
-        console.log('🔄 Fetching fresh ranking data...')
-        setIsUpdating(true)
-        console.log('Fetching main folder contents...')
-        const mainFolderFiles = await listFiles(MAIN_FOLDER_ID)
-        
-        // Get all faculty folders (should be folders at root level)
-        const facultyFolders = mainFolderFiles.filter(file => 
-          file.mimeType === 'application/vnd.google-apps.folder'
-        )
-        
-        console.log('📁 Faculty folders found:', facultyFolders.map(f => f.name))
-        
-        // Search inside each faculty folder for career folders
-        const allCareerFolders = []
-        
-        for (const facultyFolder of facultyFolders) {
-          try {
-            console.log(`🔍 Searching inside faculty: ${facultyFolder.name}`)
-            const facultyContents = await listFiles(facultyFolder.id)
-            
-            const careerFoldersInFaculty = facultyContents.filter(file => 
-              file.mimeType === 'application/vnd.google-apps.folder' && 
-              isCareerFolder(file.name)
-            )
-            
-            if (careerFoldersInFaculty.length > 0) {
-              console.log(`✅ Found ${careerFoldersInFaculty.length} careers in ${facultyFolder.name}:`, careerFoldersInFaculty.map(f => f.name))
-              // Add faculty context to career folders
-              careerFoldersInFaculty.forEach(career => {
-                career.facultyName = facultyFolder.name
-              })
-              allCareerFolders.push(...careerFoldersInFaculty)
-            } else {
-              console.log(`❌ No career folders found in ${facultyFolder.name}`)
-            }
-          } catch (error) {
-            console.error(`Error searching in faculty ${facultyFolder.name}:`, error)
-          }
+        // Verificar si necesita actualización automática los lunes
+        if (RankingJsonService.shouldUpdateRanking()) {
+          console.log('🗓️ Actualización automática de lunes detectada')
+          setIsUpdating(true)
+          const newData = await RankingJsonService.updateRanking()
+          setRankingData(newData)
+          setIsUpdating(false)
+        } else {
+          // Cargar datos existentes o generar si no existen
+          console.log('📊 Cargando datos de ranking existentes')
+          const data = await RankingJsonService.getRankingData()
+          setRankingData(data)
         }
-        
-        console.log('🎓 Total career folders found:', allCareerFolders.map(f => `${f.name} (in ${f.facultyName})`))
-        setCareers(allCareerFolders)
-        
-        const careerFolders = allCareerFolders
-        
-        if (careerFolders.length === 0) {
-          throw new Error('No se encontraron carpetas de carreras específicas en Google Drive')
-        }
-        
-        // Process all careers in parallel for speed
-        console.log('Processing careers in parallel...')
-        const careerPromises = careerFolders.map(async (careerFolder, index) => {
-          try {
-            console.log(`Processing ${careerFolder.name}...`)
-            const stats = await fetchCareerFiles(careerFolder)
-            return {
-              id: careerFolder.id,
-              name: careerFolder.name,
-              facultyName: careerFolder.facultyName,
-              color: getCareerColor(index),
-              icon: getCareerIcon(careerFolder.name),
-              ...stats
-            }
-          } catch (careerError) {
-            console.error(`Error fetching ${careerFolder.name}:`, careerError)
-            return {
-              id: careerFolder.id,
-              name: careerFolder.name,
-              facultyName: careerFolder.facultyName,
-              color: getCareerColor(index),
-              icon: getCareerIcon(careerFolder.name),
-              totalFiles: 0,
-              totalScore: 0,
-              fileTypes: { pdf: 0, word: 0, images: 0, presentations: 0 }
-            }
-          }
-        })
-        
-        // Wait for all careers to be processed
-        const allCareerData = await Promise.all(careerPromises)
-        
-        // Sort by total score (descending) and take top 5
-        const data = allCareerData
-          .sort((a, b) => b.totalScore - a.totalScore)
-          .slice(0, 5) // Limit to top 5 careers
-        
-        console.log('Career data loaded:', data)
-        setCareerData(data)
-        
-        // Save to cache
-        RankingCacheService.setCachedData(data)
-        setCacheInfo(RankingCacheService.getCacheInfo())
-        
       } catch (err) {
-        console.error('Error fetching career data:', err)
+        console.error('❌ Error cargando ranking:', err)
         setError(err.message)
       } finally {
         setLoading(false)
-        setIsUpdating(false)
       }
     }
 
-    // Check if it's Monday morning and we should auto-update
-    const checkAndLoad = async () => {
-      if (RankingCacheService.shouldUpdateOnMonday()) {
-        console.log('🗓️ Monday morning auto-update triggered')
-        await fetchAllCareerData(true)
-        return
-      }
-      
-      // If not Monday update, do normal load (which will check cache first)
-      await fetchAllCareerData()
-    }
-
-    // Single initial load
-    checkAndLoad()
+    loadRankingData()
     
-    // Set up Monday morning check (check every 4 hours to avoid excessive checking)
+    // Verificar cada 4 horas si es lunes y necesita actualización
     const mondayCheckInterval = setInterval(() => {
-      if (RankingCacheService.shouldUpdateOnMonday()) {
-        console.log('🗓️ Scheduled Monday update triggered')
-        fetchAllCareerData(true)
+      if (RankingJsonService.shouldUpdateRanking()) {
+        console.log('🗓️ Actualización programada de lunes activada')
+        loadRankingData()
       }
-    }, 4 * 60 * 60 * 1000) // Every 4 hours
+    }, 4 * 60 * 60 * 1000) // Cada 4 horas
     
     return () => clearInterval(mondayCheckInterval)
   }, [])
@@ -430,7 +124,7 @@ const Ranking = () => {
               Ranking de Carreras
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
-              Cargando datos desde Google Drive...
+              {isUpdating ? 'Generando ranking actualizado...' : 'Cargando datos del ranking...'}
             </p>
           </div>
           
@@ -456,7 +150,9 @@ const Ranking = () => {
     )
   }
 
-  const maxScore = Math.max(...careerData.map(c => c.totalScore))
+  // Usar datos del JSON
+  const careerData = rankingData?.topCareers || []
+  const maxScore = careerData.length > 0 ? Math.max(...careerData.map(c => c.totalScore)) : 1
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-8">
@@ -474,16 +170,15 @@ const Ranking = () => {
             Las carreras con mayor cantidad de material académico disponible
           </p>
           
-          {/* Cache Status and Manual Refresh */}
+          {/* JSON Status and Manual Refresh */}
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-            {cacheInfo && (
+            {rankingData && (
               <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 px-4 py-2 rounded-full text-sm text-blue-800 dark:text-blue-200">
                 <ClockIcon className="w-4 h-4" />
-                {cacheInfo.lastUpdate ? (
-                  <>Última actualización: {cacheInfo.lastUpdate.toLocaleDateString('es-ES', { 
-                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-                  })}</>
-                ) : 'Actualizando datos...'}
+                Última actualización: {new Date(rankingData.lastUpdate).toLocaleDateString('es-ES', { 
+                  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                  hour: '2-digit', minute: '2-digit'
+                })}
               </div>
             )}
             
@@ -651,20 +346,21 @@ const Ranking = () => {
             
             <div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                📊 Información de Cache
+                📊 Información del Ranking
               </h3>
-              {cacheInfo?.lastUpdate && (
+              {rankingData && (
                 <>
                   <p className="text-gray-600 dark:text-gray-300 mb-1">
-                    <strong>Última actualización:</strong> {cacheInfo.lastUpdate.toLocaleDateString('es-ES', { 
+                    <strong>Total de carreras analizadas:</strong> {rankingData.totalCareers}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-1">
+                    <strong>Última actualización:</strong> {new Date(rankingData.lastUpdate).toLocaleDateString('es-ES', { 
                       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 
                       hour: '2-digit', minute: '2-digit'
                     })}
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    <strong>Próxima actualización:</strong> {cacheInfo.nextUpdate?.toLocaleDateString('es-ES', { 
-                      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-                    })} a las 8:00 AM
+                    <strong>Próxima actualización:</strong> Próximo lunes a las 8:00 AM
                   </p>
                 </>
               )}
@@ -676,7 +372,7 @@ const Ranking = () => {
               <div className="flex items-center justify-center gap-3">
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
                 <span className="text-blue-800 dark:text-blue-200 font-medium">
-                  Actualizando datos del ranking... Esto puede tomar varios minutos.
+                  Generando ranking actualizado... Analizando todas las carpetas de carreras.
                 </span>
               </div>
             </div>
