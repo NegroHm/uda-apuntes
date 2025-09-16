@@ -12,7 +12,6 @@ export const listPublicFiles = async (folderId) => {
     url.searchParams.set('key', API_KEY);
     url.searchParams.set('pageSize', '100');
     
-    console.log('Fetching from URL:', url.toString());
     
     const response = await fetch(url, {
       method: 'GET',
@@ -28,7 +27,6 @@ export const listPublicFiles = async (folderId) => {
     }
     
     const data = await response.json();
-    console.log('API Response:', data);
     
     return data.files || [];
   } catch (error) {

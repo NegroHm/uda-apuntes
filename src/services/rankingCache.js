@@ -13,7 +13,6 @@ export const RankingCacheService = {
     const cachedData = localStorage.getItem(CACHE_KEY)
     
     if (!lastUpdate || !cachedData) {
-      console.log('❌ No cache found')
       return false
     }
     
@@ -25,7 +24,6 @@ export const RankingCacheService = {
     
     // If more than 7 days, cache is invalid
     if (daysSinceUpdate > 7) {
-      console.log('❌ Cache expired (more than 7 days old)')
       return false
     }
     
@@ -36,12 +34,10 @@ export const RankingCacheService = {
       
       // If last update was not today, cache is invalid
       if (todayStart.getTime() !== lastUpdateStart.getTime()) {
-        console.log('❌ Monday update required (not updated today)')
         return false
       }
     }
     
-    console.log('✅ Cache is valid, last updated:', lastUpdateDate)
     return true
   },
 
@@ -72,7 +68,6 @@ export const RankingCacheService = {
       localStorage.setItem(LAST_UPDATE_KEY, now.toISOString())
       localStorage.setItem(CACHE_VERSION_KEY, '1.0')
       
-      console.log('✅ Ranking data cached successfully')
       return true
     } catch (error) {
       console.error('Error caching ranking data:', error)
@@ -86,7 +81,6 @@ export const RankingCacheService = {
       localStorage.removeItem(CACHE_KEY)
       localStorage.removeItem(LAST_UPDATE_KEY)
       localStorage.removeItem(CACHE_VERSION_KEY)
-      console.log('🗑️ Ranking cache cleared')
       return true
     } catch (error) {
       console.error('Error clearing ranking cache:', error)
