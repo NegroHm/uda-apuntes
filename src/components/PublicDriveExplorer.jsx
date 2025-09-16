@@ -23,9 +23,7 @@ const PublicDriveExplorer = ({ rootFolderId }) => {
     setError(null);
     
     try {
-      console.log('Loading files for folder:', currentFolder);
       const fileList = await listPublicFiles(currentFolder);
-      console.log('Files loaded:', fileList);
       setFiles(fileList);
       
       const folders = fileList.filter(file => isFolder(file));

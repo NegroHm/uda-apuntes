@@ -37,9 +37,7 @@ const SecureDriveExplorer = ({ rootFolderId }) => {
     setError(null);
     
     try {
-      console.log('Loading files for folder:', currentFolder);
       const fileList = await listFiles(currentFolder);
-      console.log('Files loaded:', fileList);
       setFiles(fileList);
       
       // Get file counts for folders

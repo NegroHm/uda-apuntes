@@ -79,7 +79,6 @@ const Ranking = () => {
   // Manual refresh function
   const handleManualRefresh = async () => {
     if (isUpdating) return
-    console.log('🔄 Manual refresh requested')
     await fetchAllCareerData(true)
   }
 
@@ -127,7 +126,6 @@ const Ranking = () => {
     const processFolder = async (currentFolderId, currentPath = '', currentDepth = 0) => {
       try {
         const indentation = '  '.repeat(currentDepth)
-        console.log(`${indentation}📂 [Depth ${currentDepth}] Analyzing: ${currentPath}`)
         
         const items = await listFiles(currentFolderId)
         
@@ -135,7 +133,6 @@ const Ranking = () => {
         const files = items.filter(item => item.mimeType !== 'application/vnd.google-apps.folder')
         const folders = items.filter(item => item.mimeType === 'application/vnd.google-apps.folder')
         
-        console.log(`${indentation}   └── Found ${files.length} files, ${folders.length} subfolders`)
         
         // Count and categorize files
         files.forEach(file => {
@@ -176,18 +173,8 @@ const Ranking = () => {
       }
     }
     
-    console.log(`🔍 Starting complete analysis of: ${path}`)
     await processFolder(folderId, path, depth)
     
-    console.log(`✅ Analysis complete for ${path}:`)
-    console.log(`   📁 Total folders processed: ${foldersProcessed}`)
-    console.log(`   📄 Total files found: ${totalFiles}`)
-    console.log(`   📊 Score breakdown:`)
-    console.log(`      📕 PDFs: ${fileTypes.pdf} (${fileTypes.pdf * 3} pts)`)
-    console.log(`      📘 Word: ${fileTypes.word} (${fileTypes.word * 2} pts)`)
-    console.log(`      📙 PPT: ${fileTypes.presentations} (${fileTypes.presentations * 2} pts)`) 
-    console.log(`      🖼️ Images: ${fileTypes.images} (${fileTypes.images * 1} pts)`)
-    console.log(`   🏆 Total Score: ${totalScore} points`)
     
     return {
       totalFiles,
@@ -199,7 +186,6 @@ const Ranking = () => {
 
   const fetchCareerFiles = async (careerFolder) => {
     try {
-      console.log('🔍 Complete analysis for:', careerFolder.name)
       return await getCompleteFileCount(careerFolder.id, careerFolder.name)
     } catch (error) {
       console.error(`Error fetching files for ${careerFolder.name}:`, error)
@@ -229,7 +215,6 @@ const Ranking = () => {
   }
 
   useEffect(() => {
-    console.log('Ranking component mounted')
     
     const fetchAllCareerData = async (forceRefresh = false) => {
       setLoading(true)
@@ -239,7 +224,6 @@ const Ranking = () => {
       if (!forceRefresh) {
         const cached = RankingCacheService.getCachedData()
         if (cached && RankingCacheService.isCacheValid()) {
-          console.log('✅ Using cached ranking data from:', cached.lastUpdate)
           setCareerData(cached.data)
           setLoading(false)
           setCacheInfo(RankingCacheService.getCacheInfo())
@@ -249,9 +233,7 @@ const Ranking = () => {
       
       // If no valid cache or force refresh, fetch fresh data
       try {
-        console.log('🔄 Fetching fresh ranking data...')
         setIsUpdating(true)
-        console.log('Fetching main folder contents...')
         const mainFolderFiles = await listFiles(MAIN_FOLDER_ID)
         
         // Get all faculty folders (should be folders at root level)
@@ -259,14 +241,12 @@ const Ranking = () => {
           file.mimeType === 'application/vnd.google-apps.folder'
         )
         
-        console.log('📁 Faculty folders found:', facultyFolders.map(f => f.name))
         
         // Search inside each faculty folder for career folders
         const allCareerFolders = []
         
         for (const facultyFolder of facultyFolders) {
           try {
-            console.log(`🔍 Searching inside faculty: ${facultyFolder.name}`)
             const facultyContents = await listFiles(facultyFolder.id)
             
             const careerFoldersInFaculty = facultyContents.filter(file => 
@@ -275,21 +255,18 @@ const Ranking = () => {
             )
             
             if (careerFoldersInFaculty.length > 0) {
-              console.log(`✅ Found ${careerFoldersInFaculty.length} careers in ${facultyFolder.name}:`, careerFoldersInFaculty.map(f => f.name))
               // Add faculty context to career folders
               careerFoldersInFaculty.forEach(career => {
                 career.facultyName = facultyFolder.name
               })
               allCareerFolders.push(...careerFoldersInFaculty)
             } else {
-              console.log(`❌ No career folders found in ${facultyFolder.name}`)
             }
           } catch (error) {
             console.error(`Error searching in faculty ${facultyFolder.name}:`, error)
           }
         }
         
-        console.log('🎓 Total career folders found:', allCareerFolders.map(f => `${f.name} (in ${f.facultyName})`))
         setCareers(allCareerFolders)
         
         const careerFolders = allCareerFolders
@@ -299,10 +276,8 @@ const Ranking = () => {
         }
         
         // Process all careers in parallel for speed
-        console.log('Processing careers in parallel...')
         const careerPromises = careerFolders.map(async (careerFolder, index) => {
           try {
-            console.log(`Processing ${careerFolder.name}...`)
             const stats = await fetchCareerFiles(careerFolder)
             return {
               id: careerFolder.id,
@@ -335,7 +310,6 @@ const Ranking = () => {
           .sort((a, b) => b.totalScore - a.totalScore)
           .slice(0, 5) // Limit to top 5 careers
         
-        console.log('Career data loaded:', data)
         setCareerData(data)
         
         // Save to cache
@@ -354,7 +328,6 @@ const Ranking = () => {
     // Check if it's Monday morning and we should auto-update
     const checkAndLoad = async () => {
       if (RankingCacheService.shouldUpdateOnMonday()) {
-        console.log('🗓️ Monday morning auto-update triggered')
         await fetchAllCareerData(true)
         return
       }
@@ -369,7 +342,6 @@ const Ranking = () => {
     // Set up Monday morning check (check every 4 hours to avoid excessive checking)
     const mondayCheckInterval = setInterval(() => {
       if (RankingCacheService.shouldUpdateOnMonday()) {
-        console.log('🗓️ Scheduled Monday update triggered')
         fetchAllCareerData(true)
       }
     }, 4 * 60 * 60 * 1000) // Every 4 hours
