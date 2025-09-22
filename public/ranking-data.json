@@ -1,38 +1,86 @@
 {
-  "lastUpdate": "2025-09-15T15:59:11.104Z",
+  "lastUpdate": "2025-09-22T14:58:55.431Z",
   "totalCareers": 44,
   "topCareers": [
+    {
+      "id": "1VlJ3WwZ4RWMGRekdfbzgj85BMzphxUM6",
+      "name": "Lic. en Economía",
+      "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
+      "icon": "🎓",
+      "totalFiles": 262,
+      "totalScore": 581,
+      "fileTypes": {
+        "pdf": 105,
+        "word": 102,
+        "images": 36,
+        "presentations": 13
+      },
+      "foldersProcessed": 16,
+      "rank": 1
+    },
+    {
+      "id": "14lX1kMNSCZ1fvQ24AD93qeeghgk9oTwr",
+      "name": "Medicina",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "⚕️",
+      "totalFiles": 54,
+      "totalScore": 78,
+      "fileTypes": {
+        "pdf": 26,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 10,
+      "rank": 2
+    },
     {
       "id": "1Hbfl5SIJztMCT-aH8-pBUlSVOW_2Y5a0",
       "name": "Lic. Informática y Desarrollo de Software",
       "facultyName": "Facultad de Ciencias Sociales y Administrativas",
       "icon": "💻",
-      "totalFiles": 435,
-      "totalScore": 50,
+      "totalFiles": 436,
+      "totalScore": 53,
       "fileTypes": {
-        "pdf": 14,
+        "pdf": 15,
         "word": 3,
         "images": 2,
         "presentations": 0
       },
-      "foldersProcessed": 221,
-      "rank": 1
+      "foldersProcessed": 222,
+      "rank": 3
     },
     {
       "id": "1hjdbbKzrVwpJS2dEkVX4CmYfvBhLafLl",
       "name": "Contador Público ",
       "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
       "icon": "🧮",
-      "totalFiles": 14,
-      "totalScore": 42,
+      "totalFiles": 15,
+      "totalScore": 45,
       "fileTypes": {
-        "pdf": 14,
+        "pdf": 15,
         "word": 0,
         "images": 0,
         "presentations": 0
       },
       "foldersProcessed": 1,
-      "rank": 2
+      "rank": 4
+    },
+    {
+      "id": "1HlfUFIy5dFGF6bK0JScYLkm5DeM1_ujW",
+      "name": "Lic. en Obstetricia",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "🎓",
+      "totalFiles": 2,
+      "totalScore": 6,
+      "fileTypes": {
+        "pdf": 2,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 5
     },
     {
       "id": "11HUn4YgMDSWb0vf7SYxedJiVwZJNqB1y",
@@ -48,23 +96,7 @@
         "presentations": 0
       },
       "foldersProcessed": 7,
-      "rank": 3
-    },
-    {
-      "id": "1HlfUFIy5dFGF6bK0JScYLkm5DeM1_ujW",
-      "name": "Lic. en Obstetricia",
-      "facultyName": "Facultad de Ciencias Médicas",
-      "icon": "🎓",
-      "totalFiles": 1,
-      "totalScore": 3,
-      "fileTypes": {
-        "pdf": 1,
-        "word": 0,
-        "images": 0,
-        "presentations": 0
-      },
-      "foldersProcessed": 0,
-      "rank": 4
+      "rank": 6
     },
     {
       "id": "1NtceGCuQ-WQDCGsxv0T5EAVJI_0811Z1",
@@ -80,7 +112,7 @@
         "presentations": 0
       },
       "foldersProcessed": 1,
-      "rank": 5
+      "rank": 7
     },
     {
       "id": "11837OCJzYyTjVV37L3WRI0JZIPO3HpcA",
@@ -96,7 +128,7 @@
         "presentations": 0
       },
       "foldersProcessed": 0,
-      "rank": 6
+      "rank": 8
     },
     {
       "id": "1jW3KgodgzranmMi_JV0wsTxmTWKyBrzr",
@@ -112,7 +144,7 @@
         "presentations": 0
       },
       "foldersProcessed": 0,
-      "rank": 7
+      "rank": 9
     },
     {
       "id": "186YtF8rPobTI76tyYwVl9NGbGmUCVHTj",
@@ -128,73 +160,89 @@
         "presentations": 0
       },
       "foldersProcessed": 0,
-      "rank": 8
-    },
-    {
-      "id": "13rPCNh0Zk_ksSIvHhgGXuG5z1i5lPfe1",
-      "name": "Traductor Público de Italiano",
-      "facultyName": "Escuela Superior de Lenguas Extranjeras",
-      "icon": "🗣️",
-      "totalFiles": 0,
-      "totalScore": 0,
-      "fileTypes": {
-        "pdf": 0,
-        "word": 0,
-        "images": 0,
-        "presentations": 0
-      },
-      "foldersProcessed": 0,
-      "rank": 9
-    },
-    {
-      "id": "1oa5twiiox2lJ_FmKuPeL0Y2Wlev3CPFx",
-      "name": "Traductor Público de Portugués",
-      "facultyName": "Escuela Superior de Lenguas Extranjeras",
-      "icon": "🗣️",
-      "totalFiles": 0,
-      "totalScore": 0,
-      "fileTypes": {
-        "pdf": 0,
-        "word": 0,
-        "images": 0,
-        "presentations": 0
-      },
-      "foldersProcessed": 0,
       "rank": 10
     }
   ],
   "allCareers": [
     {
+      "id": "1VlJ3WwZ4RWMGRekdfbzgj85BMzphxUM6",
+      "name": "Lic. en Economía",
+      "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
+      "icon": "🎓",
+      "totalFiles": 262,
+      "totalScore": 581,
+      "fileTypes": {
+        "pdf": 105,
+        "word": 102,
+        "images": 36,
+        "presentations": 13
+      },
+      "foldersProcessed": 16,
+      "rank": 1
+    },
+    {
+      "id": "14lX1kMNSCZ1fvQ24AD93qeeghgk9oTwr",
+      "name": "Medicina",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "⚕️",
+      "totalFiles": 54,
+      "totalScore": 78,
+      "fileTypes": {
+        "pdf": 26,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 10,
+      "rank": 2
+    },
+    {
       "id": "1Hbfl5SIJztMCT-aH8-pBUlSVOW_2Y5a0",
       "name": "Lic. Informática y Desarrollo de Software",
       "facultyName": "Facultad de Ciencias Sociales y Administrativas",
       "icon": "💻",
-      "totalFiles": 435,
-      "totalScore": 50,
+      "totalFiles": 436,
+      "totalScore": 53,
       "fileTypes": {
-        "pdf": 14,
+        "pdf": 15,
         "word": 3,
         "images": 2,
         "presentations": 0
       },
-      "foldersProcessed": 221,
-      "rank": 1
+      "foldersProcessed": 222,
+      "rank": 3
     },
     {
       "id": "1hjdbbKzrVwpJS2dEkVX4CmYfvBhLafLl",
       "name": "Contador Público ",
       "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
       "icon": "🧮",
-      "totalFiles": 14,
-      "totalScore": 42,
+      "totalFiles": 15,
+      "totalScore": 45,
       "fileTypes": {
-        "pdf": 14,
+        "pdf": 15,
         "word": 0,
         "images": 0,
         "presentations": 0
       },
       "foldersProcessed": 1,
-      "rank": 2
+      "rank": 4
+    },
+    {
+      "id": "1HlfUFIy5dFGF6bK0JScYLkm5DeM1_ujW",
+      "name": "Lic. en Obstetricia",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "🎓",
+      "totalFiles": 2,
+      "totalScore": 6,
+      "fileTypes": {
+        "pdf": 2,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 5
     },
     {
       "id": "11HUn4YgMDSWb0vf7SYxedJiVwZJNqB1y",
@@ -210,23 +258,7 @@
         "presentations": 0
       },
       "foldersProcessed": 7,
-      "rank": 3
-    },
-    {
-      "id": "1HlfUFIy5dFGF6bK0JScYLkm5DeM1_ujW",
-      "name": "Lic. en Obstetricia",
-      "facultyName": "Facultad de Ciencias Médicas",
-      "icon": "🎓",
-      "totalFiles": 1,
-      "totalScore": 3,
-      "fileTypes": {
-        "pdf": 1,
-        "word": 0,
-        "images": 0,
-        "presentations": 0
-      },
-      "foldersProcessed": 0,
-      "rank": 4
+      "rank": 6
     },
     {
       "id": "1NtceGCuQ-WQDCGsxv0T5EAVJI_0811Z1",
@@ -242,7 +274,7 @@
         "presentations": 0
       },
       "foldersProcessed": 1,
-      "rank": 5
+      "rank": 7
     },
     {
       "id": "11837OCJzYyTjVV37L3WRI0JZIPO3HpcA",
@@ -258,7 +290,7 @@
         "presentations": 0
       },
       "foldersProcessed": 0,
-      "rank": 6
+      "rank": 8
     },
     {
       "id": "1jW3KgodgzranmMi_JV0wsTxmTWKyBrzr",
@@ -274,11 +306,571 @@
         "presentations": 0
       },
       "foldersProcessed": 0,
-      "rank": 7
+      "rank": 9
+    },
+    {
+      "id": "186YtF8rPobTI76tyYwVl9NGbGmUCVHTj",
+      "name": "Lic. en Inglés (C.C.C.) (Modalidad a Distancia)",
+      "facultyName": "Escuela Superior de Lenguas Extranjeras",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 10
+    },
+    {
+      "id": "13rPCNh0Zk_ksSIvHhgGXuG5z1i5lPfe1",
+      "name": "Traductor Público de Italiano",
+      "facultyName": "Escuela Superior de Lenguas Extranjeras",
+      "icon": "🗣️",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 11
+    },
+    {
+      "id": "1oa5twiiox2lJ_FmKuPeL0Y2Wlev3CPFx",
+      "name": "Traductor Público de Portugués",
+      "facultyName": "Escuela Superior de Lenguas Extranjeras",
+      "icon": "🗣️",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 12
+    },
+    {
+      "id": "1B1R38Vqdt9bcXb5GZp4qUr9n-cW-3PYi",
+      "name": "Prof. Universitario en Lengua y Cultura Inglesa",
+      "facultyName": "Escuela Superior de Lenguas Extranjeras",
+      "icon": "👩‍🏫",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 13
+    },
+    {
+      "id": "1H-_hjv34LTRggCOA7h1G6_p48pPTrsYG",
+      "name": "Lic. en Educación Física (Salud) (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "📚",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 14
+    },
+    {
+      "id": "1bV5_Gk7g8c33vwO_iYVOxHL9pYua-Vsd",
+      "name": "Lic. en Educación Física con Orientación en Fisiología del Trabajo Físico y Rendimiento Humano (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "📚",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 15
+    },
+    {
+      "id": "18TgJrDqz-T9GlQ53zc0rsNN3Jbrnie4U",
+      "name": "Lic. en Tecnologías de la Salud (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 16
+    },
+    {
+      "id": "1LWw8uBt-LduMDJIbxaN74oe2lQhjx-9Z",
+      "name": "Lic. en Producción de Bioimágenes (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 17
+    },
+    {
+      "id": "140VnvO2oz6-yfT5kStvBt-T0wYSATUay",
+      "name": "Lic. en Enfermería (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "👩‍⚕️",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 18
+    },
+    {
+      "id": "1VegU_rx7891uTI-qf0mIgkSh2d-Oxqf-",
+      "name": "Lic. en Fonoaudiología (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 19
+    },
+    {
+      "id": "1po2wQfUtY4PRz8hQ5fadjX3378juOWe6",
+      "name": "Lic. en Calidad, Medio Ambiente e Higiene y Seguridad en el Trabajo",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 20
+    },
+    {
+      "id": "1bv3M3UXCjPEZtEUjNBIWU5pr9lO6BNhx",
+      "name": "Lic. en Fonoaudiología",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 21
+    },
+    {
+      "id": "1xlkEOpA70NNz7jCRbCWd6ltEAICWH_ED",
+      "name": "Maestría en Derecho y Economía",
+      "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 22
+    },
+    {
+      "id": "1mUsmDZAei2rXBsRgociEhxBh5BG7LYla",
+      "name": "Maestría en Derecho del Trabajo y Relaciones Laborales Internacionales",
+      "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 23
+    },
+    {
+      "id": "14jb-0J3n5zdkwpVoKlJ6jg3IJ5mc7qoZ",
+      "name": "Lic. en Administración de Salud (C.C.C.)  (Modalidad a Distancia)",
+      "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
+      "icon": "💼",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 24
+    },
+    {
+      "id": "1nAcAfRV7XNMujhKyKmeawjL05FwaQElI",
+      "name": "Lic. en Analítica de Negocios (C.C.C.) (Modalidad a Distancia)",
+      "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 25
+    },
+    {
+      "id": "1y164WOBhF5My44OmW7TUM2JidTKE-CXn",
+      "name": "Abogacía",
+      "facultyName": "Facultad de Ciencias Económicas y Jurídicas",
+      "icon": "⚖️",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 26
+    },
+    {
+      "id": "132RRj9xkgy5Z0_8D9VVTXXzOJ9vq7VJw",
+      "name": "Lic. en Niñez, Adolescencia y Familia (C.C.C.)",
+      "facultyName": "Facultad de Psicología",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 27
+    },
+    {
+      "id": "1P2U-6PjW_vyW08Be51kBsB4Ckf7oNPWa",
+      "name": "Tecnicatura en Seguridad Cudadana (Modalidad a Distancia)",
+      "facultyName": "Facultad de Psicología",
+      "icon": "🔧",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 28
+    },
+    {
+      "id": "1yAvmClIkNzbINZ8wXXvJNdH0KMPrNx8h",
+      "name": "Lic. en Niñez, Adolescencia y Familia (C.C.C.) (Modalidad a Distancia)",
+      "facultyName": "Facultad de Psicología",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 29
+    },
+    {
+      "id": "1IM02HPqlZQj-IVMAhT5Sq41dxJcuKr4V",
+      "name": "Lic. en Seguridad Ciudadana Integral  (C.C.C.) (Modalidad a Distancia)",
+      "facultyName": "Facultad de Psicología",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 30
+    },
+    {
+      "id": "1oaLS8JRMolz8K1WCuJmTwcZWzdLffY6H",
+      "name": "Prof. de Grado Universitario (C.C.C.)",
+      "facultyName": "Facultad de Psicología",
+      "icon": "👩‍🏫",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 31
+    },
+    {
+      "id": "1-BgfGkcib_M3dTrK2W0qAOlHxq6-SkDW",
+      "name": "Lic. en Criminalística",
+      "facultyName": "Facultad de Psicología",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 32
+    },
+    {
+      "id": "1hFdNFQuSle2joZ2B31pk-NJbyR9VylCJ",
+      "name": "Lic. en Niñez, Adolescencia y Familia",
+      "facultyName": "Facultad de Psicología",
+      "icon": "🎓",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 33
+    },
+    {
+      "id": "1kJHXbbe9kMVDNaaR51rD3dY2-4ey2FQW",
+      "name": "Prof. de Grado Universitario en Psicología para Nivel Secundario y Superiór ",
+      "facultyName": "Facultad de Psicología",
+      "icon": "👩‍🏫",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 34
+    },
+    {
+      "id": "1kEUi40kJ_sICtpplTL-_DlTZYfp62qLX",
+      "name": "Lic. en Psicología",
+      "facultyName": "Facultad de Psicología",
+      "icon": "🧠",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 35
+    },
+    {
+      "id": "1jw0dTr6mCWnEvbV2mQhP-GbLwbOpRggZ",
+      "name": "Lic. en Turismo (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "✈️",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 36
+    },
+    {
+      "id": "1txDiX6VWVbxFT25hImABHx7eXWWZ2q5_",
+      "name": "Lic. en Administración Hotelera (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "💼",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 37
+    },
+    {
+      "id": "15OHXocc9sEi7kq97nYLf3sgVgJMCcQei",
+      "name": "Lic. en Administración Gastronómica (C.C.C.)",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "💼",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 38
+    },
+    {
+      "id": "1Cxd58vdGBPIYRy418uqMiJax3ZaTwRno",
+      "name": "Lic. en Dirección Creativa de Diseño y Publicidad (CCC)",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "🎨",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 39
+    },
+    {
+      "id": "1WfmBpSqyZ-6srapoX8oVcTaMXtiQxFaG",
+      "name": "Tec. Universitaria Diseño Gráfico y Publicidad",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "🔧",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 40
+    },
+    {
+      "id": "1i-87AR4HJp6kn4v7rgAUfVbi5vF7e9mX",
+      "name": "Lic. en Turismo y Hotelería",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "✈️",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 41
+    },
+    {
+      "id": "1uZdAVVu0MhSR15XqCiJo5-Xjh5JP_Pj1",
+      "name": "Lic. en Telecomunicaciones",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "📺",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 42
+    },
+    {
+      "id": "1mvXR3LtX2tRyiH9Ef_lZnyT7Nl-cGlu2",
+      "name": "Lic. en Relaciones Institucionales, Ceremonial y Comunicación Corporativa",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "📺",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 43
+    },
+    {
+      "id": "1rizaQKMA64r_14SGCTfZwG2yylsU3W7Q",
+      "name": "Lic. en Marketing",
+      "facultyName": "Facultad de Ciencias Sociales y Administrativas",
+      "icon": "📈",
+      "totalFiles": 0,
+      "totalScore": 0,
+      "fileTypes": {
+        "pdf": 0,
+        "word": 0,
+        "images": 0,
+        "presentations": 0
+      },
+      "foldersProcessed": 0,
+      "rank": 44
     }
   ],
   "metadata": {
-    "generatedAt": "2025-09-15T15:59:11.104Z",
+    "generatedAt": "2025-09-22T14:58:55.431Z",
     "version": "2.0",
     "description": "Ranking de carreras basado en análisis real de Google Drive",
     "scoringSystem": {
