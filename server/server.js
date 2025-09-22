@@ -67,7 +67,4 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend server running on http://localhost:${PORT}`);
-  console.log(`📁 Frontend URL: ${process.env.FRONTEND_URL}`);
-  console.log(`🔒 Environment: ${process.env.NODE_ENV}`);
 });
