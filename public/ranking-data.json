@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2025-09-22T14:58:55.431Z",
+  "lastUpdate": "2025-10-09T19:22:09.384Z",
   "totalCareers": 44,
   "topCareers": [
     {
@@ -19,35 +19,35 @@
       "rank": 1
     },
     {
-      "id": "14lX1kMNSCZ1fvQ24AD93qeeghgk9oTwr",
-      "name": "Medicina",
-      "facultyName": "Facultad de Ciencias Médicas",
-      "icon": "⚕️",
-      "totalFiles": 54,
-      "totalScore": 78,
-      "fileTypes": {
-        "pdf": 26,
-        "word": 0,
-        "images": 0,
-        "presentations": 0
-      },
-      "foldersProcessed": 10,
-      "rank": 2
-    },
-    {
       "id": "1Hbfl5SIJztMCT-aH8-pBUlSVOW_2Y5a0",
       "name": "Lic. Informática y Desarrollo de Software",
       "facultyName": "Facultad de Ciencias Sociales y Administrativas",
       "icon": "💻",
-      "totalFiles": 436,
-      "totalScore": 53,
+      "totalFiles": 1215,
+      "totalScore": 397,
       "fileTypes": {
-        "pdf": 15,
-        "word": 3,
-        "images": 2,
+        "pdf": 69,
+        "word": 84,
+        "images": 20,
+        "presentations": 1
+      },
+      "foldersProcessed": 417,
+      "rank": 2
+    },
+    {
+      "id": "14lX1kMNSCZ1fvQ24AD93qeeghgk9oTwr",
+      "name": "Medicina",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "⚕️",
+      "totalFiles": 58,
+      "totalScore": 90,
+      "fileTypes": {
+        "pdf": 30,
+        "word": 0,
+        "images": 0,
         "presentations": 0
       },
-      "foldersProcessed": 222,
+      "foldersProcessed": 14,
       "rank": 3
     },
     {
@@ -181,35 +181,35 @@
       "rank": 1
     },
     {
-      "id": "14lX1kMNSCZ1fvQ24AD93qeeghgk9oTwr",
-      "name": "Medicina",
-      "facultyName": "Facultad de Ciencias Médicas",
-      "icon": "⚕️",
-      "totalFiles": 54,
-      "totalScore": 78,
-      "fileTypes": {
-        "pdf": 26,
-        "word": 0,
-        "images": 0,
-        "presentations": 0
-      },
-      "foldersProcessed": 10,
-      "rank": 2
-    },
-    {
       "id": "1Hbfl5SIJztMCT-aH8-pBUlSVOW_2Y5a0",
       "name": "Lic. Informática y Desarrollo de Software",
       "facultyName": "Facultad de Ciencias Sociales y Administrativas",
       "icon": "💻",
-      "totalFiles": 436,
-      "totalScore": 53,
+      "totalFiles": 1215,
+      "totalScore": 397,
       "fileTypes": {
-        "pdf": 15,
-        "word": 3,
-        "images": 2,
+        "pdf": 69,
+        "word": 84,
+        "images": 20,
+        "presentations": 1
+      },
+      "foldersProcessed": 417,
+      "rank": 2
+    },
+    {
+      "id": "14lX1kMNSCZ1fvQ24AD93qeeghgk9oTwr",
+      "name": "Medicina",
+      "facultyName": "Facultad de Ciencias Médicas",
+      "icon": "⚕️",
+      "totalFiles": 58,
+      "totalScore": 90,
+      "fileTypes": {
+        "pdf": 30,
+        "word": 0,
+        "images": 0,
         "presentations": 0
       },
-      "foldersProcessed": 222,
+      "foldersProcessed": 14,
       "rank": 3
     },
     {
@@ -870,7 +870,7 @@
     }
   ],
   "metadata": {
-    "generatedAt": "2025-09-22T14:58:55.431Z",
+    "generatedAt": "2025-10-09T19:22:09.384Z",
     "version": "2.0",
     "description": "Ranking de carreras basado en análisis real de Google Drive",
     "scoringSystem": {
