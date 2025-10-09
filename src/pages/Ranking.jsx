@@ -3,13 +3,12 @@ import { TrophyIcon, DocumentIcon, PhotoIcon, PresentationChartBarIcon, ClockIco
 import RankingJsonService from '../services/rankingJsonService'
 
 // Componente de ranking minimalista con vista expandible
-// Los datos se actualizan cada lunes a las 08:00 automáticamente
+// Carga datos desde JSON estático - Sin análisis en tiempo real
 
 const Ranking = () => {
   const [rankingData, setRankingData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [isUpdating, setIsUpdating] = useState(false)
   const [expandedCards, setExpandedCards] = useState(new Set())
 
   // Función para expandir/colapsar tarjetas
@@ -24,27 +23,18 @@ const Ranking = () => {
   }
 
   useEffect(() => {
-    console.log('🏆 Ranking component mounted')
+    console.log('🏆 Ranking component mounted - Cargando JSON estático')
     
     const loadRankingData = async () => {
       setLoading(true)
       setError(null)
       
       try {
-        // Verificar si necesita actualización automática los lunes
-        const shouldUpdate = await RankingJsonService.shouldUpdateRanking()
-        if (shouldUpdate) {
-          console.log('🗓️ Actualización automática de lunes detectada')
-          setIsUpdating(true)
-          const newData = await RankingJsonService.updateRanking()
-          setRankingData(newData)
-          setIsUpdating(false)
-        } else {
-          // Cargar datos desde JSON estático
-          console.log('📊 Cargando datos de ranking desde JSON')
-          const data = await RankingJsonService.getRankingData()
-          setRankingData(data)
-        }
+        // Solo cargar el JSON estático, sin análisis
+        console.log('📊 Cargando datos desde JSON estático...')
+        const data = await RankingJsonService.getRankingData()
+        setRankingData(data)
+        console.log('✅ Datos cargados exitosamente')
       } catch (err) {
         console.error('❌ Error cargando ranking:', err)
         setError(err.message)
@@ -54,17 +44,6 @@ const Ranking = () => {
     }
 
     loadRankingData()
-    
-    // Verificar cada 4 horas si es lunes y necesita actualización
-    const mondayCheckInterval = setInterval(async () => {
-      const shouldUpdate = await RankingJsonService.shouldUpdateRanking()
-      if (shouldUpdate) {
-        console.log('🗓️ Actualización programada de lunes activada')
-        loadRankingData()
-      }
-    }, 4 * 60 * 60 * 1000) // Cada 4 horas
-    
-    return () => clearInterval(mondayCheckInterval)
   }, [])
 
   const getRankIcon = (rank) => {
@@ -110,7 +89,7 @@ const Ranking = () => {
               Ranking de Carreras
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
-              {isUpdating ? 'Generando ranking actualizado...' : 'Cargando datos del ranking...'}
+              Cargando ranking desde JSON...
             </p>
           </div>
           
@@ -280,15 +259,6 @@ const Ranking = () => {
           </div>
         </div>
 
-        {/* Indicador de actualización */}
-        {isUpdating && (
-          <div className="fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
-            <div className="flex items-center gap-2">
-              <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
-              <span className="text-sm">Actualizando...</span>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )

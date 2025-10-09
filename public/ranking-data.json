@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2025-10-06T21:12:45.657Z",
+  "lastUpdate": "2025-10-09T19:22:09.384Z",
   "totalCareers": 44,
   "topCareers": [
     {
@@ -23,15 +23,15 @@
       "name": "Lic. Informática y Desarrollo de Software",
       "facultyName": "Facultad de Ciencias Sociales y Administrativas",
       "icon": "💻",
-      "totalFiles": 1213,
-      "totalScore": 391,
+      "totalFiles": 1215,
+      "totalScore": 397,
       "fileTypes": {
-        "pdf": 67,
+        "pdf": 69,
         "word": 84,
         "images": 20,
         "presentations": 1
       },
-      "foldersProcessed": 416,
+      "foldersProcessed": 417,
       "rank": 2
     },
     {
@@ -185,15 +185,15 @@
       "name": "Lic. Informática y Desarrollo de Software",
       "facultyName": "Facultad de Ciencias Sociales y Administrativas",
       "icon": "💻",
-      "totalFiles": 1213,
-      "totalScore": 391,
+      "totalFiles": 1215,
+      "totalScore": 397,
       "fileTypes": {
-        "pdf": 67,
+        "pdf": 69,
         "word": 84,
         "images": 20,
         "presentations": 1
       },
-      "foldersProcessed": 416,
+      "foldersProcessed": 417,
       "rank": 2
     },
     {
@@ -870,7 +870,7 @@
     }
   ],
   "metadata": {
-    "generatedAt": "2025-10-06T21:12:45.657Z",
+    "generatedAt": "2025-10-09T19:22:09.384Z",
     "version": "2.0",
     "description": "Ranking de carreras basado en análisis real de Google Drive",
     "scoringSystem": {

@@ -1,40 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { TrophyIcon, DocumentIcon, PhotoIcon, PresentationChartBarIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import RankingCacheService from '../services/rankingCache'
+import { RankingJsonService } from '../services/rankingJsonService'
 
 const TopCareerWidget = () => {
   const [topCareers, setTopCareers] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const loadTopCareers = () => {
+    const loadTopCareers = async () => {
       try {
-        const cached = RankingCacheService.getCachedData()
-        if (cached && cached.data && cached.data.length > 0) {
-          // Get top 3 careers
-          setTopCareers(cached.data.slice(0, 3))
-          setLoading(false)
-        } else {
-          setLoading(false)
+        console.log('🏆 TopCareerWidget - Cargando top 3 carreras desde JSON')
+        const rankingData = await RankingJsonService.getRankingData()
+        
+        if (rankingData && rankingData.topCareers && rankingData.topCareers.length > 0) {
+          // Get top 3 careers from the ranking data
+          setTopCareers(rankingData.topCareers.slice(0, 3))
+          console.log('✅ Top 3 carreras cargadas:', rankingData.topCareers.slice(0, 3).map(c => c.name))
         }
       } catch (error) {
-        console.error('Error loading top careers:', error)
+        console.error('❌ Error loading top careers:', error)
+      } finally {
         setLoading(false)
       }
     }
 
     loadTopCareers()
-
-    // Listen for cache updates
-    const handleStorageChange = (e) => {
-      if (e.key === 'career_ranking_data') {
-        loadTopCareers()
-      }
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   const getRankEmoji = (index) => {
@@ -99,9 +90,10 @@ const TopCareerWidget = () => {
               </div>
             </div>
             
-            {/* Right side - File count */}
-            <div className="text-sm text-gray-600 dark:text-gray-400 flex-shrink-0">
-              📁 {career.totalFiles?.toLocaleString()}
+            {/* Right side - Score and File count */}
+            <div className="text-sm text-gray-600 dark:text-gray-400 flex-shrink-0 text-right">
+              <div className="font-medium">{career.totalScore} pts</div>
+              <div className="text-xs">📁 {career.totalFiles?.toLocaleString()}</div>
             </div>
           </div>
         ))}
